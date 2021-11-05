@@ -48,6 +48,10 @@ namespace InfBot.UI
                     {
                         InlineKeyboardButton.WithCallbackData(text: "ТВИМС", callbackData: "ТВИМС"),//id-9
                         InlineKeyboardButton.WithCallbackData(text: "ИнЯз", callbackData: "ИнЯз")//id-10
+                    },
+                    new List<InlineKeyboardButton>
+                    {
+                        InlineKeyboardButton.WithCallbackData(text: "<<Назад", callbackData: "<<Назад"),
                     }
             });
             ;
@@ -64,6 +68,17 @@ namespace InfBot.UI
                     new List<InlineKeyboardButton>
                     {
                         InlineKeyboardButton.WithUrl(text: "Расписание", url: Links.Timetable)
+                    }
+            });
+            ;
+        }
+        public static IReplyMarkup BackToStart()
+        {
+            return new InlineKeyboardMarkup(new List<List<InlineKeyboardButton>>
+            {
+                    new List<InlineKeyboardButton>
+                    {
+                        InlineKeyboardButton.WithCallbackData(text: "Меню", callbackData: "/start"),
                     }
             });
             ;
@@ -124,17 +139,6 @@ namespace InfBot.UI
                     new List<InlineKeyboardButton>
                     {
                         InlineKeyboardButton.WithCallbackData(text: "К Предметам", callbackData: "I'm Matvey")
-                    }
-            });
-            ;
-        }
-        public static IReplyMarkup TimeTable()
-        {
-            return new InlineKeyboardMarkup(new List<List<InlineKeyboardButton>>
-            {
-                    new List<InlineKeyboardButton>
-                    {
-                        InlineKeyboardButton.WithUrl(text: "Расписание", url: Links.Timetable)
                     }
             });
             ;

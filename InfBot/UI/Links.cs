@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace InfBot.UI
+﻿namespace InfBot.UI
 {
     class Links
     {
         public static string Diff = "https://vk.com/doc250403707_615130839?hash=81c4eab41147f79c00&dl=38c1f1291ac04fac3d";
-        public static string Timetable = "https://wampi.ru/image/RE6PxEZ";
+
+        public static string Timetable = "https://sun9-54.userapi.com/impg/XYocq0wTKMvVloQbJ8_zVMweRRRM0PnVvQEy2g/hdkfuS" +
+            "EbJ5I.jpg?size=791x362&quality=96&sign=d3201d45489bfc31320b9194c282104e&type=album";
     }
 }

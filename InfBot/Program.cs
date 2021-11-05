@@ -64,7 +64,18 @@ namespace InfBot
                 Console.WriteLine($"Нажата кнопка: {e.CallbackQuery.Data}");
             }
 
-            if (e.CallbackQuery.Data == "Предметы")
+            if (e.CallbackQuery.Data == "/start")
+            {
+                await client.SendTextMessageAsync(message.Chat.Id, Messages.Start, replyMarkup: Buttons.Start());
+            }
+            else if (e.CallbackQuery.Data == "<<Назад")
+            {
+                await client.EditMessageTextAsync(message.Chat.Id,
+                    message.MessageId,
+                    Messages.Start,
+                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.Start());
+            }
+            else if (e.CallbackQuery.Data == "Предметы")
             {
                 await client.EditMessageTextAsync(
                     message.Chat.Id,
@@ -284,6 +295,10 @@ namespace InfBot
                 await client.SendTextMessageAsync(message.Chat.Id, "Введите ссылку на материалы");
                 Subject.parametrSetingStatus = "Материалы";
             }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6ff53080e421c5e9cdbf9b0e1cbcd41c05d42dc4
             else if (e.CallbackQuery.Data == "Диффуры")
             {
                 await client.EditMessageTextAsync(
@@ -294,11 +309,7 @@ namespace InfBot
             }
             else if (e.CallbackQuery.Data == "Расписание")
             {
-                await client.EditMessageTextAsync(
-                    message.Chat.Id,
-                    message.MessageId,
-                    "Недельное расписание",
-                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.TimeTable());
+                await client.SendPhotoAsync(message.Chat.Id, Links.Timetable, replyMarkup: Buttons.BackToStart());
             }
         }
 
