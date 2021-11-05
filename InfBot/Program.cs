@@ -3,6 +3,7 @@ using InfBot.Models;
 using InfBot.UI;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Args;
 
@@ -15,10 +16,29 @@ namespace InfBot
 
 
         [Obsolete]
-        static void Main()
+        static async Task Main()
         {
             try
             {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubjects = dataBase.Subjects.ToList();
+                    if (!selectedSubjects.Any())
+                    {
+                        dataBase.Add(new Subject { Id = "1"});
+                        dataBase.Add(new Subject { Id = "2" });
+                        dataBase.Add(new Subject { Id = "3" });
+                        dataBase.Add(new Subject { Id = "4" });
+                        dataBase.Add(new Subject { Id = "5" });
+                        dataBase.Add(new Subject { Id = "6" });
+                        dataBase.Add(new Subject { Id = "7" });
+                        dataBase.Add(new Subject { Id = "8" });
+                        dataBase.Add(new Subject { Id = "9" });
+                        dataBase.Add(new Subject { Id = "10" });
+                        await dataBase.SaveChangesAsync();
+                    }
+                }
+
                 client = new TelegramBotClient(token);
                 client.StartReceiving();
                 client.OnMessage += OnMessageHandler;
