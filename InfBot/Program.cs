@@ -47,6 +47,7 @@ namespace InfBot
                     message.MessageId,
                     "Предметы:");
             }
+            
         }
 
         [Obsolete]
