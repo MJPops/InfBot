@@ -31,7 +31,7 @@ namespace InfBot
         [Obsolete]
         private static async void OnCallbackQweryHandlerAsync(object sender, CallbackQueryEventArgs e)
         {
-            
+            //Хай
         }
 
         [Obsolete]
