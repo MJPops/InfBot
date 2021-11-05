@@ -32,6 +32,7 @@ namespace InfBot
         private static async void OnCallbackQweryHandlerAsync(object sender, CallbackQueryEventArgs e)
         {
             //Хай
+            //ke
         }
 
         [Obsolete]
