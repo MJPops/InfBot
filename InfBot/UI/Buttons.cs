@@ -68,6 +68,17 @@ namespace InfBot.UI
             });
             ;
         }
+        public static IReplyMarkup BackToStart()
+        {
+            return new InlineKeyboardMarkup(new List<List<InlineKeyboardButton>>
+            {
+                    new List<InlineKeyboardButton>
+                    {
+                        InlineKeyboardButton.WithCallbackData(text: "Меню", callbackData: "/start"),
+                    }
+            });
+            ;
+        }
 
         public static IReplyMarkup SubjectsEdit()
         {
@@ -124,17 +135,6 @@ namespace InfBot.UI
                     new List<InlineKeyboardButton>
                     {
                         InlineKeyboardButton.WithCallbackData(text: "К Предметам", callbackData: "I'm Matvey")
-                    }
-            });
-            ;
-        }
-        public static IReplyMarkup TimeTable()
-        {
-            return new InlineKeyboardMarkup(new List<List<InlineKeyboardButton>>
-            {
-                    new List<InlineKeyboardButton>
-                    {
-                        InlineKeyboardButton.WithUrl(text: "Расписание", url: Links.Timetable)
                     }
             });
             ;
