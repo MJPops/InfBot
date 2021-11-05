@@ -52,17 +52,18 @@ namespace InfBot.UI
             });
             ;
         }
-        public static IReplyMarkup InSubject(string link)
+        public static IReplyMarkup InSubject()
         {
             return new InlineKeyboardMarkup(new List<List<InlineKeyboardButton>>
             {
                     new List<InlineKeyboardButton>
                     {
-                        InlineKeyboardButton.WithCallbackData(text: "Домашка", callbackData: "Домашка")
+                        InlineKeyboardButton.WithCallbackData(text: "Домашка", callbackData: "Домашка"),
+                        InlineKeyboardButton.WithUrl(text: "Материалы", url: Links.Diff)
                     },
                     new List<InlineKeyboardButton>
                     {
-                        InlineKeyboardButton.WithUrl(text: "Расписание", url: link)
+                        InlineKeyboardButton.WithUrl(text: "Расписание", url: Links.Timetable)
                     }
             });
             ;
@@ -94,8 +95,8 @@ namespace InfBot.UI
                     },
                     new List<InlineKeyboardButton>
                     {
-                        InlineKeyboardButton.WithCallbackData(text: "ТВИМС", callbackData: "ТВИМС"),
-                        InlineKeyboardButton.WithCallbackData(text: "ИнЯз", callbackData: "ИнЯз")
+                        InlineKeyboardButton.WithCallbackData(text: "ТВИМС", callbackData: "ТВИМСEdit"),
+                        InlineKeyboardButton.WithCallbackData(text: "ИнЯз", callbackData: "ИнЯзEdit")
                     }
             });
             ;
@@ -112,6 +113,28 @@ namespace InfBot.UI
                     new List<InlineKeyboardButton>
                     {
                         InlineKeyboardButton.WithCallbackData(text: "<<Назад", callbackData: "I'm Matvey")
+                    }
+            });
+            ;
+        }
+        public static IReplyMarkup BackToEdit()
+        {
+            return new InlineKeyboardMarkup(new List<List<InlineKeyboardButton>>
+            {
+                    new List<InlineKeyboardButton>
+                    {
+                        InlineKeyboardButton.WithCallbackData(text: "К Предметам", callbackData: "I'm Matvey")
+                    }
+            });
+            ;
+        }
+        public static IReplyMarkup TimeTable()
+        {
+            return new InlineKeyboardMarkup(new List<List<InlineKeyboardButton>>
+            {
+                    new List<InlineKeyboardButton>
+                    {
+                        InlineKeyboardButton.WithUrl(text: "Расписание", url: Links.Timetable)
                     }
             });
             ;

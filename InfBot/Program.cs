@@ -26,6 +26,7 @@ namespace InfBot
                     if (!selectedSubjects.Any())
                     {
                         dataBase.Add(new Subject { Id = "1", Name = "Диффуры"});
+                        dataBase.Add(new Subject { Id = "1", Name = "Диффуры" });
                         dataBase.Add(new Subject { Id = "2", Name = "Физика" });
                         dataBase.Add(new Subject { Id = "3", Name = "МСОПР" });
                         dataBase.Add(new Subject { Id = "4", Name = "Физ-ра" });
@@ -79,13 +80,14 @@ namespace InfBot
                     message.MessageId,
                     "Выберите предмет для редактирования:",
                     replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.SubjectsEdit());
+                Subject.subjectToChange = null;
             }
             else if (e.CallbackQuery.Data == "ДиффурыEdit")
             {
                 using (ApplicationContext dataBase = new ApplicationContext())
                 {
                     var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                          where subject.Name == e.CallbackQuery.Data.Substring(0, 7)
+                                          where subject.Id == "1"
                                           select subject;
 
                     foreach (Subject subject in selectedSubject)
@@ -96,7 +98,7 @@ namespace InfBot
                             $"Материалы: {subject.SubjectLink}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
-                    
+                    Subject.subjectToChange = "1";
                 }
             }
             else if (e.CallbackQuery.Data == "ФизикаEdit")
@@ -104,7 +106,7 @@ namespace InfBot
                 using (ApplicationContext dataBase = new ApplicationContext())
                 {
                     var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                          where subject.Name == e.CallbackQuery.Data.Substring(0, 6)
+                                          where subject.Id == "2"
                                           select subject;
 
                     foreach (Subject subject in selectedSubject)
@@ -115,7 +117,7 @@ namespace InfBot
                             $"Материалы: {subject.SubjectLink}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
-
+                    Subject.subjectToChange = "2";
                 }
             }
             else if (e.CallbackQuery.Data == "Физ-раEdit")
@@ -123,7 +125,7 @@ namespace InfBot
                 using (ApplicationContext dataBase = new ApplicationContext())
                 {
                     var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                          where subject.Name == e.CallbackQuery.Data.Substring(0, 6)
+                                          where subject.Id == "3"
                                           select subject;
 
                     foreach (Subject subject in selectedSubject)
@@ -134,7 +136,7 @@ namespace InfBot
                             $"Материалы: {subject.SubjectLink}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
-
+                    Subject.subjectToChange = "3";
                 }
             }
             else if (e.CallbackQuery.Data == "ТОИEdit")
@@ -142,7 +144,7 @@ namespace InfBot
                 using (ApplicationContext dataBase = new ApplicationContext())
                 {
                     var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                          where subject.Name == e.CallbackQuery.Data.Substring(0, 3)
+                                          where subject.Id == "4"
                                           select subject;
 
                     foreach (Subject subject in selectedSubject)
@@ -153,7 +155,7 @@ namespace InfBot
                             $"Материалы: {subject.SubjectLink}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
-
+                    Subject.subjectToChange = "4";
                 }
             }
             else if (e.CallbackQuery.Data == "ФилософияEdit")
@@ -161,7 +163,7 @@ namespace InfBot
                 using (ApplicationContext dataBase = new ApplicationContext())
                 {
                     var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                          where subject.Name == e.CallbackQuery.Data.Substring(0, 9)
+                                          where subject.Id == "5"
                                           select subject;
 
                     foreach (Subject subject in selectedSubject)
@@ -172,7 +174,7 @@ namespace InfBot
                             $"Материалы: {subject.SubjectLink}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
-
+                    Subject.subjectToChange = "5";
                 }
             }
             else if (e.CallbackQuery.Data == "СоциологияEdit")
@@ -180,7 +182,7 @@ namespace InfBot
                 using (ApplicationContext dataBase = new ApplicationContext())
                 {
                     var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                          where subject.Name == e.CallbackQuery.Data.Substring(0, 10)
+                                          where subject.Id == "6"
                                           select subject;
 
                     foreach (Subject subject in selectedSubject)
@@ -191,7 +193,7 @@ namespace InfBot
                             $"Материалы: {subject.SubjectLink}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
-
+                    Subject.subjectToChange = "6";
                 }
             }
             else if (e.CallbackQuery.Data == "ПрограммированиеEdit")
@@ -199,7 +201,7 @@ namespace InfBot
                 using (ApplicationContext dataBase = new ApplicationContext())
                 {
                     var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                          where subject.Name == e.CallbackQuery.Data.Substring(0, 16)
+                                          where subject.Id == "7"
                                           select subject;
 
                     foreach (Subject subject in selectedSubject)
@@ -210,7 +212,7 @@ namespace InfBot
                             $"Материалы: {subject.SubjectLink}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
-
+                    Subject.subjectToChange = "7";
                 }
             }
             else if (e.CallbackQuery.Data == "МСОПРEdit")
@@ -218,7 +220,7 @@ namespace InfBot
                 using (ApplicationContext dataBase = new ApplicationContext())
                 {
                     var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                          where subject.Name == e.CallbackQuery.Data.Substring(0, 5)
+                                          where subject.Id == "8"
                                           select subject;
 
                     foreach (Subject subject in selectedSubject)
@@ -229,7 +231,7 @@ namespace InfBot
                             $"Материалы: {subject.SubjectLink}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
-
+                    Subject.subjectToChange = "8";
                 }
             }
             else if (e.CallbackQuery.Data == "ТВИМСEdit")
@@ -237,7 +239,7 @@ namespace InfBot
                 using (ApplicationContext dataBase = new ApplicationContext())
                 {
                     var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                          where subject.Name == e.CallbackQuery.Data.Substring(0, 5)
+                                          where subject.Id == "9"
                                           select subject;
 
                     foreach (Subject subject in selectedSubject)
@@ -250,13 +252,14 @@ namespace InfBot
                     }
 
                 }
+                Subject.subjectToChange = "9";
             }
             else if (e.CallbackQuery.Data == "ИнЯзEdit")
             {
                 using (ApplicationContext dataBase = new ApplicationContext())
                 {
                     var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                          where subject.Name == e.CallbackQuery.Data.Substring(0, 4)
+                                          where subject.Id == "10"
                                           select subject;
 
                     foreach (Subject subject in selectedSubject)
@@ -267,11 +270,36 @@ namespace InfBot
                             $"Материалы: {subject.SubjectLink}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
-
+                    Subject.subjectToChange = "10";
                 }
             }
 
-
+            else if (e.CallbackQuery.Data == "Домашку")
+            {
+                await client.SendTextMessageAsync(message.Chat.Id, "Введите дз (для переноса текста на новую строку пишите символ \\n");
+                Subject.parametrSetingStatus = "Домашку";
+            }
+            else if (e.CallbackQuery.Data == "Материалы")
+            {
+                await client.SendTextMessageAsync(message.Chat.Id, "Введите ссылку на материалы");
+                Subject.parametrSetingStatus = "Материалы";
+            }
+            if (e.CallbackQuery.Data == "Диффуры")
+            {
+                await client.EditMessageTextAsync(
+                    message.Chat.Id,
+                    message.MessageId,
+                    "Диффуры:",
+                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+            }
+            if (e.CallbackQuery.Data == "Расписание")
+            {
+                await client.EditMessageTextAsync(
+                    message.Chat.Id,
+                    message.MessageId,
+                    "Недельное расписание",
+                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.TimeTable());
+            }
         }
 
         [Obsolete]
@@ -295,14 +323,42 @@ namespace InfBot
                     "Выберите предмет для редактирования:",
                     replyMarkup: Buttons.SubjectsEdit());
             }
-            else if (message.Text.Substring(0, 2) == "id")
+            else if (Subject.parametrSetingStatus != null)
             {
-                using (ApplicationContext dataBase = new ApplicationContext())
+                if (Subject.parametrSetingStatus == "Домашку")
                 {
-                    Subject subject = new Subject { Id = message.Text.Substring(2) };
-                    dataBase.Add(subject);
-                    dataBase.SaveChanges();
+                    using (ApplicationContext dataBase = new ApplicationContext())
+                    {
+                        var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                              where subject.Id == Subject.subjectToChange
+                                              select subject;
+
+                        foreach (Subject subject in selectedSubject)
+                        {
+                            subject.HomeWork = message.Text;
+                        }
+                        await dataBase.SaveChangesAsync();
+                        await client.SendTextMessageAsync(message.Chat.Id, "Изменено", replyMarkup: Buttons.BackToEdit());
+                    }
                 }
+                else if (Subject.parametrSetingStatus == "Материалы")
+                {
+                    using (ApplicationContext dataBase = new ApplicationContext())
+                    {
+                        var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                              where subject.Id == Subject.subjectToChange
+                                              select subject;
+
+                        foreach (Subject subject in selectedSubject)
+                        {
+                            subject.SubjectLink = message.Text;
+                        }
+                        await dataBase.SaveChangesAsync();
+                        await client.SendTextMessageAsync(message.Chat.Id, "Изменено", replyMarkup: Buttons.BackToEdit());
+                    }
+                }
+                Subject.parametrSetingStatus = null;
+                Subject.subjectToChange = null;
             }
         }
     }
