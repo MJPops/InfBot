@@ -284,7 +284,7 @@ namespace InfBot
                 await client.SendTextMessageAsync(message.Chat.Id, "Введите ссылку на материалы");
                 Subject.parametrSetingStatus = "Материалы";
             }
-            if (e.CallbackQuery.Data == "Диффуры")
+            else if (e.CallbackQuery.Data == "Диффуры")
             {
                 await client.EditMessageTextAsync(
                     message.Chat.Id,
@@ -292,7 +292,7 @@ namespace InfBot
                     "Диффуры:",
                     replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
             }
-            if (e.CallbackQuery.Data == "Расписание")
+            else if (e.CallbackQuery.Data == "Расписание")
             {
                 await client.EditMessageTextAsync(
                     message.Chat.Id,
