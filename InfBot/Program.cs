@@ -106,7 +106,7 @@ namespace InfBot
             {
                 using (ApplicationContext dataBase = new ApplicationContext())
                 {
-                    Subject subject = new Subject { Id = message.Text.Substring(3) };
+                    Subject subject = new Subject { Id = message.Text.Substring(2) };
                     dataBase.Add(subject);
                     dataBase.SaveChanges();
                 }
