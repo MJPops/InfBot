@@ -26,42 +26,27 @@ namespace InfBot.UI
             {
                     new List<InlineKeyboardButton>
                     {
-                        InlineKeyboardButton.WithCallbackData(text: "Диффуры", callbackData: "Диффуры")
-                    },
-                    new List<InlineKeyboardButton>
-                    {
+                        InlineKeyboardButton.WithCallbackData(text: "Диффуры", callbackData: "Диффуры"),
                         InlineKeyboardButton.WithCallbackData(text: "Физ-ра", callbackData: "Физика")
                     },
                     new List<InlineKeyboardButton>
                     {
-                        InlineKeyboardButton.WithCallbackData(text: "МСОПР", callbackData: "МСОПР")
-                    },
-                    new List<InlineKeyboardButton>
-                    {
+                        InlineKeyboardButton.WithCallbackData(text: "МСОПР", callbackData: "МСОПР"),
                         InlineKeyboardButton.WithCallbackData(text: "Физ-ра", callbackData: "Физ-ра")
                     },
                     new List<InlineKeyboardButton>
                     {
-                        InlineKeyboardButton.WithCallbackData(text: "ТОИ", callbackData: "ТОИ")
-                    },
-                    new List<InlineKeyboardButton>
-                    {
+                        InlineKeyboardButton.WithCallbackData(text: "ТОИ", callbackData: "ТОИ"),
                         InlineKeyboardButton.WithCallbackData(text: "Социология", callbackData: "Социология")
                     },
                     new List<InlineKeyboardButton>
                     {
-                        InlineKeyboardButton.WithCallbackData(text: "Философия", callbackData: "Философия")
-                    },
-                    new List<InlineKeyboardButton>
-                    {
+                        InlineKeyboardButton.WithCallbackData(text: "Философия", callbackData: "Философия"),
                         InlineKeyboardButton.WithCallbackData(text: "Программирование", callbackData: "Программирование")
                     },
                     new List<InlineKeyboardButton>
                     {
-                        InlineKeyboardButton.WithCallbackData(text: "ТВИМС", callbackData: "ТВИМС")
-                    },
-                    new List<InlineKeyboardButton>
-                    {
+                        InlineKeyboardButton.WithCallbackData(text: "ТВИМС", callbackData: "ТВИМС"),
                         InlineKeyboardButton.WithCallbackData(text: "ИнЯз", callbackData: "ИнЯз")
                     }
             });
