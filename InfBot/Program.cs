@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InfBot.UI;
+using System;
 using Telegram.Bot;
 using Telegram.Bot.Args;
 
@@ -6,7 +7,7 @@ namespace InfBot
 {
     class Program
     {
-        private static string token { get; set; } = "Token";
+        private static string token { get; set; } = "2141405883:AAEKP5nIZlzPPLLcwQlHoN3fz3E9AklScAE";
         private static TelegramBotClient client;
 
 
@@ -31,14 +32,38 @@ namespace InfBot
         [Obsolete]
         private static async void OnCallbackQweryHandlerAsync(object sender, CallbackQueryEventArgs e)
         {
-            //Хай
-            //ke
+            var message = e.CallbackQuery.Message;
+
+
+            if (e.CallbackQuery.Data != null)
+            {
+                Console.WriteLine($"Нажата кнопка: {e.CallbackQuery.Data}");
+            }
+
+            if (e.CallbackQuery.Data == "Предметы")
+            {
+                await client.EditMessageTextAsync(
+                    message.Chat.Id,
+                    message.MessageId,
+                    "Предметы:");
+            }
         }
 
         [Obsolete]
         private static async void OnMessageHandler(object sender, MessageEventArgs e)
         {
+            var message = e.Message;
 
+
+            if (message.Text != null)
+            {
+                Console.WriteLine($"Пришло сообщение: {message.Text}");
+            }
+
+            if (message.Text == "/start")
+            {
+                await client.SendTextMessageAsync(message.Chat.Id, Messages.Start, replyMarkup: Buttons.Start());
+            }
         }
     }
 }

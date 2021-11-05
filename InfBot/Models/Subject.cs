@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace InfBot.Models
 {
-    class Subject
+    public class Subject
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }
