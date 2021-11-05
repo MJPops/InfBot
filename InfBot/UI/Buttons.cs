@@ -52,5 +52,20 @@ namespace InfBot.UI
             });
             ;
         }
+        public static IReplyMarkup InSubject(string link)
+        {
+            return new InlineKeyboardMarkup(new List<List<InlineKeyboardButton>>
+            {
+                    new List<InlineKeyboardButton>
+                    {
+                        InlineKeyboardButton.WithCallbackData(text: "Домашка", callbackData: "Домашка")
+                    },
+                    new List<InlineKeyboardButton>
+                    {
+                        InlineKeyboardButton.WithUrl(text: "Расписание", url: link)
+                    }
+            });
+            ;
+        }
     }
 }

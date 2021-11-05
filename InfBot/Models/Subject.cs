@@ -10,5 +10,7 @@ namespace InfBot.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string HomeWork { get; set; }
+        public string SubjectLink { get; set; }
     }
 }

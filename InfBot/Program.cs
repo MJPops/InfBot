@@ -45,7 +45,8 @@ namespace InfBot
                 await client.EditMessageTextAsync(
                     message.Chat.Id,
                     message.MessageId,
-                    "Предметы:");
+                    "Предметы:",
+                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.Subjects());
             }
         }
 
