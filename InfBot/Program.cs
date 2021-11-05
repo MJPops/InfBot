@@ -299,7 +299,7 @@ namespace InfBot
             }
             else if (e.CallbackQuery.Data == "Расписание")
             {
-                await client.SendPhotoAsync(message.Chat.Id, Links.Timetable, replyMarkup: Buttons.Start());
+                await client.SendPhotoAsync(message.Chat.Id, Links.Timetable, replyMarkup: Buttons.BackToStart());
             }
         }
 

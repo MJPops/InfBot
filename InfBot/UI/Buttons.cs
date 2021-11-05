@@ -48,6 +48,10 @@ namespace InfBot.UI
                     {
                         InlineKeyboardButton.WithCallbackData(text: "ТВИМС", callbackData: "ТВИМС"),//id-9
                         InlineKeyboardButton.WithCallbackData(text: "ИнЯз", callbackData: "ИнЯз")//id-10
+                    },
+                    new List<InlineKeyboardButton>
+                    {
+                        InlineKeyboardButton.WithCallbackData(text: "<<Назад", callbackData: "/start"),
                     }
             });
             ;
