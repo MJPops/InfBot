@@ -94,8 +94,8 @@ namespace InfBot.UI
                     },
                     new List<InlineKeyboardButton>
                     {
-                        InlineKeyboardButton.WithCallbackData(text: "ТВИМС", callbackData: "ТВИМС"),
-                        InlineKeyboardButton.WithCallbackData(text: "ИнЯз", callbackData: "ИнЯз")
+                        InlineKeyboardButton.WithCallbackData(text: "ТВИМС", callbackData: "ТВИМСEdit"),
+                        InlineKeyboardButton.WithCallbackData(text: "ИнЯз", callbackData: "ИнЯзEdit")
                     }
             });
             ;
@@ -112,6 +112,17 @@ namespace InfBot.UI
                     new List<InlineKeyboardButton>
                     {
                         InlineKeyboardButton.WithCallbackData(text: "<<Назад", callbackData: "I'm Matvey")
+                    }
+            });
+            ;
+        }
+        public static IReplyMarkup BackToEdit()
+        {
+            return new InlineKeyboardMarkup(new List<List<InlineKeyboardButton>>
+            {
+                    new List<InlineKeyboardButton>
+                    {
+                        InlineKeyboardButton.WithCallbackData(text: "К Предметам", callbackData: "I'm Matvey")
                     }
             });
             ;
