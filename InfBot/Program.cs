@@ -25,16 +25,16 @@ namespace InfBot
                     var selectedSubjects = dataBase.Subjects.ToList();
                     if (!selectedSubjects.Any())
                     {
-                        dataBase.Add(new Subject { Id = "1"});
-                        dataBase.Add(new Subject { Id = "2" });
-                        dataBase.Add(new Subject { Id = "3" });
-                        dataBase.Add(new Subject { Id = "4" });
-                        dataBase.Add(new Subject { Id = "5" });
-                        dataBase.Add(new Subject { Id = "6" });
-                        dataBase.Add(new Subject { Id = "7" });
-                        dataBase.Add(new Subject { Id = "8" });
-                        dataBase.Add(new Subject { Id = "9" });
-                        dataBase.Add(new Subject { Id = "10" });
+                        dataBase.Add(new Subject { Id = "1", Name = "Диффуры"});
+                        dataBase.Add(new Subject { Id = "2", Name = "Физика" });
+                        dataBase.Add(new Subject { Id = "3", Name = "МСОПР" });
+                        dataBase.Add(new Subject { Id = "4", Name = "Физ-ра" });
+                        dataBase.Add(new Subject { Id = "5", Name = "ТОИ" });
+                        dataBase.Add(new Subject { Id = "6", Name = "Социология" });
+                        dataBase.Add(new Subject { Id = "7", Name = "Философия" });
+                        dataBase.Add(new Subject { Id = "8", Name = "Программирование" });
+                        dataBase.Add(new Subject { Id = "9", Name = "ТВИМС" });
+                        dataBase.Add(new Subject { Id = "10", Name = "ИнЯз" });
                         await dataBase.SaveChangesAsync();
                     }
                 }
