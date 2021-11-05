@@ -68,6 +68,13 @@ namespace InfBot
             {
                 await client.SendTextMessageAsync(message.Chat.Id, Messages.Start, replyMarkup: Buttons.Start());
             }
+            else if (e.CallbackQuery.Data == "<<Назад")
+            {
+                await client.EditMessageTextAsync(message.Chat.Id,
+                    message.MessageId,
+                    Messages.Start,
+                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.Start());
+            }
             else if (e.CallbackQuery.Data == "Предметы")
             {
                 await client.EditMessageTextAsync(

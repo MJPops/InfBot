@@ -51,7 +51,7 @@ namespace InfBot.UI
                     },
                     new List<InlineKeyboardButton>
                     {
-                        InlineKeyboardButton.WithCallbackData(text: "<<Назад", callbackData: "/start"),
+                        InlineKeyboardButton.WithCallbackData(text: "<<Назад", callbackData: "<<Назад"),
                     }
             });
             ;
