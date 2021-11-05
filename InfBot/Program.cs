@@ -50,6 +50,7 @@ namespace InfBot
             catch
             {
                 Console.WriteLine("ERROR");
+                Console.ReadLine();
             }
         }
 
@@ -84,8 +85,22 @@ namespace InfBot
                     replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.Subjects());
             }
 
+            else if (e.CallbackQuery.Data == "Диффуры")
+            {
+                await client.EditMessageTextAsync(
+                    message.Chat.Id,
+                    message.MessageId,
+                    "Диффуры:",
+                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+            }
 
-            else if (e.CallbackQuery.Data == "I'm Matvey")
+            else if (e.CallbackQuery.Data == "Расписание")
+            {
+                await client.SendPhotoAsync(message.Chat.Id, Links.Timetable, replyMarkup: Buttons.BackToStart());
+            }
+
+
+            else if (e.CallbackQuery.Data == "Im Matvey")
             {
                 await client.EditMessageTextAsync(message.Chat.Id,
                     message.MessageId,
@@ -295,19 +310,6 @@ namespace InfBot
                 await client.SendTextMessageAsync(message.Chat.Id, "Введите ссылку на материалы");
                 Subject.parametrSetingStatus = "Материалы";
             }
-
-            else if (e.CallbackQuery.Data == "Диффуры")
-            {
-                await client.EditMessageTextAsync(
-                    message.Chat.Id,
-                    message.MessageId,
-                    "Диффуры:",
-                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
-            }
-            else if (e.CallbackQuery.Data == "Расписание")
-            {
-                await client.SendPhotoAsync(message.Chat.Id, Links.Timetable, replyMarkup: Buttons.BackToStart());
-            }
         }
 
         [Obsolete]
@@ -321,52 +323,102 @@ namespace InfBot
                 Console.WriteLine($"Пришло сообщение: {message.Text}");
             }
 
-            if (message.Text == "/start")
+            try
             {
-                await client.SendTextMessageAsync(message.Chat.Id, Messages.Start, replyMarkup: Buttons.Start());
-            }
-            else if (message.Text == "I'm Matvey")
-            {
-                await client.SendTextMessageAsync(message.Chat.Id,
-                    "Выберите предмет для редактирования:",
-                    replyMarkup: Buttons.SubjectsEdit());
-            }
-            else if (Subject.parametrSetingStatus != null)
-            {
-                if (Subject.parametrSetingStatus == "Домашку")
+                if (message.Text == "/start")
                 {
-                    using (ApplicationContext dataBase = new ApplicationContext())
-                    {
-                        var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                              where subject.Id == Subject.subjectToChange
-                                              select subject;
+                    await client.SendTextMessageAsync(message.Chat.Id, Messages.Start, replyMarkup: Buttons.Start());
+                }
 
-                        foreach (Subject subject in selectedSubject)
+                else if (message.Text == "Im Matvey")
+                {
+                    await client.SendTextMessageAsync(message.Chat.Id,
+                        "Выберите предмет для редактирования:",
+                        replyMarkup: Buttons.SubjectsEdit());
+                }
+                else if (message.Text.Substring(0, 11) == "Регистрация")
+                {
+                    Console.WriteLine(Convert.ToString(message.Chat.Id));
+                    using (ApplicationContextForUsers dataBase = new ApplicationContextForUsers())
+                    {
+                        var users = dataBase.BotUsers.ToList();
+                        var selectedBotUser = from user in users
+                                              where user.Id == Convert.ToString(message.Chat.Id)
+                                              select user;
+
+                        if (!selectedBotUser.Any())
                         {
-                            subject.HomeWork = message.Text;
+                            await client.SendTextMessageAsync(message.Chat.Id, "Вы зарегистрированы");
+                            BotUser newUser = new BotUser { Id = Convert.ToString(message.Chat.Id), Name = message.Text.Substring(12) };
+                            dataBase.Add(newUser);
+                            await dataBase.SaveChangesAsync();
                         }
-                        await dataBase.SaveChangesAsync();
-                        await client.SendTextMessageAsync(message.Chat.Id, "Изменено", replyMarkup: Buttons.BackToEdit());
+                        else
+                        {
+                            await client.SendTextMessageAsync(message.Chat.Id, "Такой пользователь уже зарегистрирован");
+                        }
                     }
                 }
-                else if (Subject.parametrSetingStatus == "Материалы")
+                else if (message.Text.Substring(0, 5) == "Вывод")
                 {
-                    using (ApplicationContext dataBase = new ApplicationContext())
+                    using (ApplicationContextForUsers dataBase = new ApplicationContextForUsers())
                     {
-                        var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                              where subject.Id == Subject.subjectToChange
-                                              select subject;
+                        var users = dataBase.BotUsers.ToList();
 
-                        foreach (Subject subject in selectedSubject)
+                        if (users.Any())
                         {
-                            subject.SubjectLink = message.Text;
+                            foreach (BotUser user in users)
+                            {
+                                await client.SendTextMessageAsync(user.Id, message.Text.Substring(6));
+                            }
                         }
-                        await dataBase.SaveChangesAsync();
-                        await client.SendTextMessageAsync(message.Chat.Id, "Изменено", replyMarkup: Buttons.BackToEdit());
+                        else
+                        {
+                            await client.SendTextMessageAsync(message.Chat.Id, "Нет зарегистрированных пользователей");
+                        }
                     }
                 }
-                Subject.parametrSetingStatus = null;
-                Subject.subjectToChange = null;
+                else if (Subject.parametrSetingStatus != null)
+                {
+                    if (Subject.parametrSetingStatus == "Домашку")
+                    {
+                        using (ApplicationContext dataBase = new ApplicationContext())
+                        {
+                            var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                                  where subject.Id == Subject.subjectToChange
+                                                  select subject;
+
+                            foreach (Subject subject in selectedSubject)
+                            {
+                                subject.HomeWork = message.Text;
+                            }
+                            await dataBase.SaveChangesAsync();
+                            await client.SendTextMessageAsync(message.Chat.Id, "Изменено", replyMarkup: Buttons.BackToEdit());
+                        }
+                    }
+                    else if (Subject.parametrSetingStatus == "Материалы")
+                    {
+                        using (ApplicationContext dataBase = new ApplicationContext())
+                        {
+                            var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                                  where subject.Id == Subject.subjectToChange
+                                                  select subject;
+
+                            foreach (Subject subject in selectedSubject)
+                            {
+                                subject.SubjectLink = message.Text;
+                            }
+                            await dataBase.SaveChangesAsync();
+                            await client.SendTextMessageAsync(message.Chat.Id, "Изменено", replyMarkup: Buttons.BackToEdit());
+                        }
+                    }
+                    Subject.parametrSetingStatus = null;
+                    Subject.subjectToChange = null;
+                }
+            }
+            catch
+            {
+                await client.SendTextMessageAsync(message.Chat.Id, "Я так не умею");
             }
         }
     }
