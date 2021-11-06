@@ -87,11 +87,202 @@ namespace InfBot
 
             else if (e.CallbackQuery.Data == "Диффуры")
             {
-                await client.EditMessageTextAsync(
-                    message.Chat.Id,
-                    message.MessageId,
-                    "Диффуры:",
-                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                          where subject.Id == "1"
+                                          select subject;
+
+                    foreach (Subject subject in selectedSubject)
+                    {
+                        await client.EditMessageTextAsync(message.Chat.Id,
+                            message.MessageId,
+                            $"Дз: {subject.HomeWork}\n\n" +
+                            $"Материалы: {subject.SubjectLink}",
+                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                    }
+                    Subject.subjectToChange = "1";
+                }
+            }
+
+            else if (e.CallbackQuery.Data == "Физика")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                          where subject.Id == "2"
+                                          select subject;
+
+                    foreach (Subject subject in selectedSubject)
+                    {
+                        await client.EditMessageTextAsync(message.Chat.Id,
+                            message.MessageId,
+                            $"Дз: {subject.HomeWork}\n\n" +
+                            $"Материалы: {subject.SubjectLink}",
+                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                    }
+                    Subject.subjectToChange = "2";
+                }
+            }
+
+            else if (e.CallbackQuery.Data == "ТОИ")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                          where subject.Id == "5"
+                                          select subject;
+
+                    foreach (Subject subject in selectedSubject)
+                    {
+                        await client.EditMessageTextAsync(message.Chat.Id,
+                            message.MessageId,
+                            $"Дз: {subject.HomeWork}\n\n" +
+                            $"Материалы: {subject.SubjectLink}",
+                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                    }
+                    Subject.subjectToChange = "5";
+                }
+            }
+
+            else if (e.CallbackQuery.Data == "ТВИМС")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                          where subject.Id == "9"
+                                          select subject;
+
+                    foreach (Subject subject in selectedSubject)
+                    {
+                        await client.EditMessageTextAsync(message.Chat.Id,
+                            message.MessageId,
+                            $"Дз: {subject.HomeWork}\n\n" +
+                            $"Материалы: {subject.SubjectLink}",
+                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                    }
+                    Subject.subjectToChange = "9";
+                }
+            }
+
+            else if (e.CallbackQuery.Data == "Социология")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                          where subject.Id == "6"
+                                          select subject;
+
+                    foreach (Subject subject in selectedSubject)
+                    {
+                        await client.EditMessageTextAsync(message.Chat.Id,
+                            message.MessageId,
+                            $"Дз: {subject.HomeWork}\n\n" +
+                            $"Материалы: {subject.SubjectLink}",
+                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                    }
+                    Subject.subjectToChange = "6";
+                }
+            }
+
+            else if (e.CallbackQuery.Data == "Философия")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                          where subject.Id == "7"
+                                          select subject;
+
+                    foreach (Subject subject in selectedSubject)
+                    {
+                        await client.EditMessageTextAsync(message.Chat.Id,
+                            message.MessageId,
+                            $"Дз: {subject.HomeWork}\n\n" +
+                            $"Материалы: {subject.SubjectLink}",
+                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                    }
+                    Subject.subjectToChange = "7";
+                }
+            }
+
+            else if (e.CallbackQuery.Data == "Физ-ра")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                          where subject.Id == "4"
+                                          select subject;
+
+                    foreach (Subject subject in selectedSubject)
+                    {
+                        await client.EditMessageTextAsync(message.Chat.Id,
+                            message.MessageId,
+                            $"Дз: {subject.HomeWork}\n\n" +
+                            $"Материалы: {subject.SubjectLink}",
+                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                    }
+                    Subject.subjectToChange = "4";
+                }
+            }
+
+            else if (e.CallbackQuery.Data == "ИнЯз")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                          where subject.Id == "10"
+                                          select subject;
+
+                    foreach (Subject subject in selectedSubject)
+                    {
+                        await client.EditMessageTextAsync(message.Chat.Id,
+                            message.MessageId,
+                            $"Дз: {subject.HomeWork}\n\n" +
+                            $"Материалы: {subject.SubjectLink}",
+                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                    }
+                    Subject.subjectToChange = "10";
+                }
+            }
+
+            else if (e.CallbackQuery.Data == "МСОПР")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                          where subject.Id == "3"
+                                          select subject;
+
+                    foreach (Subject subject in selectedSubject)
+                    {
+                        await client.EditMessageTextAsync(message.Chat.Id,
+                            message.MessageId,
+                            $"Дз: {subject.HomeWork}\n\n" +
+                            $"Материалы: {subject.SubjectLink}",
+                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                    }
+                    Subject.subjectToChange = "3";
+                }
+            }
+
+            else if (e.CallbackQuery.Data == "Программирование")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                          where subject.Id == "8"
+                                          select subject;
+
+                    foreach (Subject subject in selectedSubject)
+                    {
+                        await client.EditMessageTextAsync(message.Chat.Id,
+                            message.MessageId,
+                            $"Дз: {subject.HomeWork}\n\n" +
+                            $"Материалы: {subject.SubjectLink}",
+                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                    }
+                    Subject.subjectToChange = "8";
+                }
             }
 
             else if (e.CallbackQuery.Data == "Расписание")
@@ -300,11 +491,6 @@ namespace InfBot
                 }
             }
 
-            else if (e.CallbackQuery.Data == "Добавить запись")
-            {
-                await client.SendTextMessageAsync(message.Chat.Id, "Введите новую запись (для переноса текста на новую строку пишите символ \\n");
-                Subject.parametrSetingStatus = "Информация";
-            }
             else if (e.CallbackQuery.Data == "Домашку")
             {
                 await client.SendTextMessageAsync(message.Chat.Id, "Введите дз (для переноса текста на новую строку пишите символ \\n");
@@ -340,63 +526,13 @@ namespace InfBot
                 Console.WriteLine($"Пришло сообщение: {message.Text}");
             }
 
-
+            try
+            {
                 if (message.Text == "/start")
                 {
                     await client.SendTextMessageAsync(message.Chat.Id, Messages.Start, replyMarkup: Buttons.Start());
                 }
 
-                else if (message.Text == "Im Matvey")
-                {
-                    await client.SendTextMessageAsync(message.Chat.Id,
-                        "Выберите предмет для редактирования:",
-                        replyMarkup: Buttons.SubjectsEdit());
-                }
-                else if (message.Text.Substring(0, 11) == "Регистрация")
-                {
-                    Console.WriteLine(Convert.ToString(message.Chat.Id));
-                    using (ApplicationContextForUsers dataBase = new ApplicationContextForUsers())
-                    {
-                        var users = dataBase.BotUsers.ToList();
-                        var selectedBotUser = from user in users
-                                              where user.Id == Convert.ToString(message.Chat.Id)
-                                              select user;
-
-                        if (!selectedBotUser.Any())
-                        {
-                            await client.SendTextMessageAsync(message.Chat.Id, "Вы зарегистрированы");
-                            BotUser newUser = new BotUser { Id = Convert.ToString(message.Chat.Id), Name = message.Text.Substring(12) };
-                            dataBase.Add(newUser);
-                            await dataBase.SaveChangesAsync();
-                        }
-                        else
-                        {
-                            await client.SendTextMessageAsync(message.Chat.Id, "Такой пользователь уже зарегистрирован");
-                        }
-                    }
-                }
-                else if (message.Text.Substring(0, 5) == "Вывод")
-                {
-                    await client.SendTextMessageAsync(message.Chat.Id,
-                        "Введите новость",
-                        replyMarkup: Buttons.Add());
-                    using (ApplicationContextForUsers dataBase = new ApplicationContextForUsers())
-                    {
-                        var users = dataBase.BotUsers.ToList();
-
-                        if (users.Any())
-                        {
-                            foreach (BotUser user in users)
-                            {
-                                await client.SendTextMessageAsync(user.Id, message.Text.Substring(6));
-                            }
-                        }
-                        else
-                        {
-                            await client.SendTextMessageAsync(message.Chat.Id, "Нет зарегистрированных пользователей");
-                        }
-                    }
-                }
                 else if (Subject.parametrSetingStatus != null)
                 {
                     if (Subject.parametrSetingStatus == "Домашку")
@@ -431,24 +567,64 @@ namespace InfBot
                             await client.SendTextMessageAsync(message.Chat.Id, "Изменено", replyMarkup: Buttons.BackToEdit());
                         }
                     }
-                    else if (Subject.parametrSetingStatus == "Информация")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
-                        {
-                            var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                                  where subject.Id == Subject.subjectToChange
-                                                  select subject;
-                            foreach (Subject subject in selectedSubject)
-                            {
-                                subject.SubjectLink = message.Text;
-                            }
-                            await dataBase.SaveChangesAsync();
-                            await client.SendTextMessageAsync(message.Chat.Id, "Информация внесена", replyMarkup: Buttons.BackToEdit());
-                        }
-                    }
                     Subject.parametrSetingStatus = null;
                     Subject.subjectToChange = null;
                 }
+
+                else if (message.Text == "Im Matvey")
+                {
+                    await client.SendTextMessageAsync(message.Chat.Id,
+                        "Выберите предмет для редактирования:",
+                        replyMarkup: Buttons.SubjectsEdit());
+                }
+                //Эта зона в конце ифов, все сабстринги располагать в порядке убывания длинны подстроки
+                else if (message.Text.Substring(0, 11) == "Регистрация")
+                {
+                    Console.WriteLine(Convert.ToString(message.Chat.Id));
+                    using (ApplicationContextForUsers dataBase = new ApplicationContextForUsers())
+                    {
+                        var users = dataBase.BotUsers.ToList();
+                        var selectedBotUser = from user in users
+                                              where user.Id == Convert.ToString(message.Chat.Id)
+                                              select user;
+
+                        if (!selectedBotUser.Any())
+                        {
+                            await client.SendTextMessageAsync(message.Chat.Id, "Вы зарегистрированы");
+                            BotUser newUser = new BotUser { Id = Convert.ToString(message.Chat.Id), Name = message.Text.Substring(12) };
+                            dataBase.Add(newUser);
+                            await dataBase.SaveChangesAsync();
+                        }
+                        else
+                        {
+                            await client.SendTextMessageAsync(message.Chat.Id, "Такой пользователь уже зарегистрирован");
+                        }
+                    }
+                }
+                else if (message.Text.Substring(0, 5) == "Вывод")
+                {
+                    using (ApplicationContextForUsers dataBase = new ApplicationContextForUsers())
+                    {
+                        var users = dataBase.BotUsers.ToList();
+
+                        if (users.Any())
+                        {
+                            foreach (BotUser user in users)
+                            {
+                                await client.SendTextMessageAsync(user.Id, message.Text.Substring(6));
+                            }
+                        }
+                        else
+                        {
+                            await client.SendTextMessageAsync(message.Chat.Id, "Нет зарегистрированных пользователей");
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                await client.SendTextMessageAsync(message.Chat.Id, "Я так не умею");
+            }
         }
     }
 }

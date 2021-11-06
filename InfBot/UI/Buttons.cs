@@ -63,11 +63,11 @@ namespace InfBot.UI
                     new List<InlineKeyboardButton>
                     {
                         InlineKeyboardButton.WithCallbackData(text: "Домашка", callbackData: "Домашка"),
-                        InlineKeyboardButton.WithUrl(text: "Материалы", url: Links.Diff)
+                        InlineKeyboardButton.WithUrl(text: "Материалы", url: Links.Materials)
                     },
                     new List<InlineKeyboardButton>
                     {
-                        InlineKeyboardButton.WithUrl(text: "Расписание", url: Links.Timetable)
+                        InlineKeyboardButton.WithCallbackData(text: "<<Назад", callbackData: "Предметы")
                     }
             });
             ;
