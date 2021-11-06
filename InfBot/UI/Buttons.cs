@@ -96,10 +96,6 @@ namespace InfBot.UI
                     },
                     new List<InlineKeyboardButton>
                     {
-                        InlineKeyboardButton.WithUrl(text: "Дист. занятие", url: linkToLesson)
-                    },
-                    new List<InlineKeyboardButton>
-                    {
                         InlineKeyboardButton.WithCallbackData(text: "<<Назад", callbackData: "Предметы")
                     }
             });

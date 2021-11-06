@@ -1059,8 +1059,8 @@ namespace InfBot
 
                         if (!selectedBotUser.Any())
                         {
-                            await client.SendTextMessageAsync(message.Chat.Id, "Вы зарегистрированы");
                             BotUser newUser = new BotUser { Id = Convert.ToString(message.Chat.Id), Name = message.Text.Substring(12) };
+                            await client.SendTextMessageAsync(message.Chat.Id, "Вы зарегистрированы");
                             dataBase.Add(newUser);
                             await dataBase.SaveChangesAsync();
                         }
