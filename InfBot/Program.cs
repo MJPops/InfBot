@@ -501,10 +501,6 @@ namespace InfBot
                 await client.SendTextMessageAsync(message.Chat.Id, "Введите ссылку на материалы");
                 Subject.parametrSetingStatus = "Материалы";
             }
-            else if (e.CallbackQuery.Data == "Расписание")
-            {
-                await client.SendPhotoAsync(message.Chat.Id, Links.Timetable, replyMarkup: Buttons.BackToStart());
-            }
 
             else if (e.CallbackQuery.Data == "Пользователи")
             {
