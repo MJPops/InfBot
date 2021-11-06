@@ -17,7 +17,6 @@ namespace InfBot.Models
 
         public Subject()
         {
-            Name = null;
             HomeWork = null;
         }
 

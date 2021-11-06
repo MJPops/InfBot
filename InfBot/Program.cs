@@ -3,7 +3,6 @@ using InfBot.Models;
 using InfBot.UI;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Args;
 
