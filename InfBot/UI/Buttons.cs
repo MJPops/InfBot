@@ -91,7 +91,7 @@ namespace InfBot.UI
                     new List<InlineKeyboardButton>
                     {
                         InlineKeyboardButton.WithCallbackData(text: "Диффуры", callbackData: "ДиффурыEdit"),
-                        InlineKeyboardButton.WithCallbackData(text: "Физ-ра", callbackData: "ФизикаEdit")
+                        InlineKeyboardButton.WithCallbackData(text: "Физика", callbackData: "ФизикаEdit")
                     },
                     new List<InlineKeyboardButton>
                     {
@@ -127,7 +127,11 @@ namespace InfBot.UI
                     },
                     new List<InlineKeyboardButton>
                     {
-                        InlineKeyboardButton.WithCallbackData(text: "<<Назад", callbackData: "I'm Matvey")
+                        InlineKeyboardButton.WithCallbackData(text: "Добавить запись", callbackData: "Добавить запись")
+                    },
+                    new List<InlineKeyboardButton>
+                    {
+                        InlineKeyboardButton.WithCallbackData(text: "<<Назад", callbackData: "Im Matvey")
                     }
             });
             ;
@@ -138,7 +142,18 @@ namespace InfBot.UI
             {
                     new List<InlineKeyboardButton>
                     {
-                        InlineKeyboardButton.WithCallbackData(text: "К Предметам", callbackData: "I'm Matvey")
+                        InlineKeyboardButton.WithCallbackData(text: "К Предметам", callbackData: "Im Matvey")
+                    }
+            });
+            ;
+        }
+        public static IReplyMarkup Add()
+        {
+            return new InlineKeyboardMarkup(new List<List<InlineKeyboardButton>>
+            {
+                    new List<InlineKeyboardButton>
+                    {
+                        InlineKeyboardButton.WithCallbackData(text: "Добавить запись", callbackData: "Добавить запись")
                     }
             });
             ;
