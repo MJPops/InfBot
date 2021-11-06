@@ -98,14 +98,14 @@ namespace InfBot
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"Дз: {subject.HomeWork}",
+                                $"Диффуры Д/З: {subject.HomeWork}",
                                 replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
                         }
                         else
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"Дз: {subject.HomeWork}",
+                                $"Диффуры Д/З: {subject.HomeWork}",
                                 replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
                         }
                     }
@@ -122,13 +122,78 @@ namespace InfBot
 
                     foreach (Subject subject in selectedSubject)
                     {
-                        await client.EditMessageTextAsync(message.Chat.Id,
-                            message.MessageId,
-                            $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.Link}",
-                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        if (subject.Link == null)
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"Физика Д/З: {subject.HomeWork}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        }
+                        else
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"Физика Д/З: {subject.HomeWork}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+                        }
                     }
                     Subject.subjectToChange = "2";
+                }
+            }
+            else if (e.CallbackQuery.Data == "МСОПР")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                          where subject.Id == "3"
+                                          select subject;
+
+                    foreach (Subject subject in selectedSubject)
+                    {
+                        if (subject.Link == null)
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"МСОПР Д/З: {subject.HomeWork}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        }
+                        else
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"МСОПР Д/З: {subject.HomeWork}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+                        }
+                    }
+                    Subject.subjectToChange = "3";
+                }
+            }
+            else if (e.CallbackQuery.Data == "Физ-ра")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                          where subject.Id == "4"
+                                          select subject;
+
+                    foreach (Subject subject in selectedSubject)
+                    {
+                        if (subject.Link == null)
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"Физ-ра Д/З: {subject.HomeWork}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        }
+                        else
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"Физ-ра Д/З: {subject.HomeWork}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+                        }
+                    }
+                    Subject.subjectToChange = "4";
                 }
             }
             else if (e.CallbackQuery.Data == "ТОИ")
@@ -141,32 +206,22 @@ namespace InfBot
 
                     foreach (Subject subject in selectedSubject)
                     {
-                        await client.EditMessageTextAsync(message.Chat.Id,
-                            message.MessageId,
-                            $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.Link}",
-                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        if (subject.Link == null)
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"ТОИ Д/З: {subject.HomeWork}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        }
+                        else
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"ТОИ Д/З: {subject.HomeWork}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+                        }
                     }
                     Subject.subjectToChange = "5";
-                }
-            }
-            else if (e.CallbackQuery.Data == "ТВИМС")
-            {
-                using (ApplicationContext dataBase = new ApplicationContext())
-                {
-                    var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                          where subject.Id == "9"
-                                          select subject;
-
-                    foreach (Subject subject in selectedSubject)
-                    {
-                        await client.EditMessageTextAsync(message.Chat.Id,
-                            message.MessageId,
-                            $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.Link}",
-                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
-                    }
-                    Subject.subjectToChange = "9";
                 }
             }
             else if (e.CallbackQuery.Data == "Социология")
@@ -179,11 +234,20 @@ namespace InfBot
 
                     foreach (Subject subject in selectedSubject)
                     {
-                        await client.EditMessageTextAsync(message.Chat.Id,
-                            message.MessageId,
-                            $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.Link}",
-                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        if (subject.Link == null)
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"Социология Д/З: {subject.HomeWork}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        }
+                        else
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"Социология Д/З: {subject.HomeWork}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+                        }
                     }
                     Subject.subjectToChange = "6";
                 }
@@ -198,70 +262,22 @@ namespace InfBot
 
                     foreach (Subject subject in selectedSubject)
                     {
-                        await client.EditMessageTextAsync(message.Chat.Id,
-                            message.MessageId,
-                            $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.Link}",
-                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        if (subject.Link == null)
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"Философия Д/З: {subject.HomeWork}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        }
+                        else
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"Философия Д/З: {subject.HomeWork}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+                        }
                     }
                     Subject.subjectToChange = "7";
-                }
-            }
-            else if (e.CallbackQuery.Data == "Физ-ра")
-            {
-                using (ApplicationContext dataBase = new ApplicationContext())
-                {
-                    var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                          where subject.Id == "4"
-                                          select subject;
-
-                    foreach (Subject subject in selectedSubject)
-                    {
-                        await client.EditMessageTextAsync(message.Chat.Id,
-                            message.MessageId,
-                            $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.Link}",
-                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
-                    }
-                    Subject.subjectToChange = "4";
-                }
-            }
-            else if (e.CallbackQuery.Data == "ИнЯз")
-            {
-                using (ApplicationContext dataBase = new ApplicationContext())
-                {
-                    var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                          where subject.Id == "10"
-                                          select subject;
-
-                    foreach (Subject subject in selectedSubject)
-                    {
-                        await client.EditMessageTextAsync(message.Chat.Id,
-                            message.MessageId,
-                            $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.Link}",
-                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
-                    }
-                    Subject.subjectToChange = "10";
-                }
-            }
-            else if (e.CallbackQuery.Data == "МСОПР")
-            {
-                using (ApplicationContext dataBase = new ApplicationContext())
-                {
-                    var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                          where subject.Id == "3"
-                                          select subject;
-
-                    foreach (Subject subject in selectedSubject)
-                    {
-                        await client.EditMessageTextAsync(message.Chat.Id,
-                            message.MessageId,
-                            $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.Link}",
-                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
-                    }
-                    Subject.subjectToChange = "3";
                 }
             }
             else if (e.CallbackQuery.Data == "Программирование")
@@ -274,15 +290,81 @@ namespace InfBot
 
                     foreach (Subject subject in selectedSubject)
                     {
-                        await client.EditMessageTextAsync(message.Chat.Id,
-                            message.MessageId,
-                            $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.Link}",
-                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        if (subject.Link == null)
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"Программирование Д/З: {subject.HomeWork}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        }
+                        else
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"Программирование Д/З: {subject.HomeWork}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+                        }
                     }
                     Subject.subjectToChange = "8";
                 }
+            }  
+            else if (e.CallbackQuery.Data == "ТВИМС")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                          where subject.Id == "9"
+                                          select subject;
+
+                    foreach (Subject subject in selectedSubject)
+                    {
+                        if (subject.Link == null)
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"ТВИМС Д/З: {subject.HomeWork}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        }
+                        else
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"ТВИМС Д/З: {subject.HomeWork}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+                        }
+                    }
+                    Subject.subjectToChange = "9";
+                }
             }
+            else if (e.CallbackQuery.Data == "ИнЯз")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                          where subject.Id == "10"
+                                          select subject;
+
+                    foreach (Subject subject in selectedSubject)
+                    {
+                        if (subject.Link == null)
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"ИнЯз Д/З: {subject.HomeWork}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        }
+                        else
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"ИнЯз Д/З: {subject.HomeWork}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+                        }
+                    }
+                    Subject.subjectToChange = "10";
+                }
+            }
+            
             else if (e.CallbackQuery.Data == "Расписание")
             {
                 await client.SendPhotoAsync(message.Chat.Id, Links.Timetable, replyMarkup: Buttons.BackToStart());
@@ -311,8 +393,8 @@ namespace InfBot
                     {
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
-                            $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.Link}",
+                            $"Диффуры {subject.HomeWork}\n\n" +
+                            $"Что вы хотите изменить? {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
                     Subject.subjectToChange = "1";
@@ -330,8 +412,8 @@ namespace InfBot
                     {
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
-                            $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.Link}",
+                            $"Физика {subject.HomeWork}\n\n" +
+                            $"Что вы хотите изменить? {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
                     Subject.subjectToChange = "2";
@@ -349,8 +431,8 @@ namespace InfBot
                     {
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
-                            $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.Link}",
+                            $"Физ-ра {subject.HomeWork}\n\n" +
+                            $"Что вы хотите изменить? {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
                     Subject.subjectToChange = "3";
@@ -368,8 +450,8 @@ namespace InfBot
                     {
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
-                            $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.Link}",
+                            $"ТОИ {subject.HomeWork}\n\n" +
+                            $"Что вы хотите изменить? {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
                     Subject.subjectToChange = "4";
@@ -387,8 +469,8 @@ namespace InfBot
                     {
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
-                            $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.Link}",
+                            $"Философия {subject.HomeWork}\n\n" +
+                            $"Что вы хотите изменить? {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
                     Subject.subjectToChange = "5";
@@ -406,8 +488,8 @@ namespace InfBot
                     {
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
-                            $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.Link}",
+                            $"Социология {subject.HomeWork}\n\n" +
+                            $"Что вы хотите изменить? {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
                     Subject.subjectToChange = "6";
@@ -425,8 +507,8 @@ namespace InfBot
                     {
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
-                            $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.Link}",
+                            $"Программирование {subject.HomeWork}\n\n" +
+                            $"Что вы хотите изменить? {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
                     Subject.subjectToChange = "7";
@@ -444,8 +526,8 @@ namespace InfBot
                     {
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
-                            $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.Link}",
+                            $"МСОПР {subject.HomeWork}\n\n" +
+                            $"Что вы хотите изменить? {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
                     Subject.subjectToChange = "8";
@@ -463,8 +545,8 @@ namespace InfBot
                     {
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
-                            $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.Link}",
+                            $"ТВИМС {subject.HomeWork}\n\n" +
+                            $"Что вы хотите изменить? {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
 
@@ -483,8 +565,8 @@ namespace InfBot
                     {
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
-                            $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.Link}",
+                            $"ИнЯз {subject.HomeWork}\n\n" +
+                            $"Что вы хотите изменить? {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
                     Subject.subjectToChange = "10";
@@ -493,7 +575,7 @@ namespace InfBot
 
             else if (e.CallbackQuery.Data == "Домашку")
             {
-                await client.SendTextMessageAsync(message.Chat.Id, "Введите дз");
+                await client.SendTextMessageAsync(message.Chat.Id, "Введите Д/З");
                 Subject.parametrSetingStatus = "Домашку";
             }
             else if (e.CallbackQuery.Data == "Материалы")
@@ -501,6 +583,7 @@ namespace InfBot
                 await client.SendTextMessageAsync(message.Chat.Id, "Введите ссылку на материалы");
                 Subject.parametrSetingStatus = "Материалы";
             }
+
             else if (e.CallbackQuery.Data == "Расписание")
             {
                 await client.SendPhotoAsync(message.Chat.Id, Links.Timetable, replyMarkup: Buttons.BackToStart());
@@ -520,7 +603,7 @@ namespace InfBot
                         }
                         await client.SendTextMessageAsync(message.Chat.Id,
                             $"Ваш Id -- {message.Chat.Id}",
-                            replyMarkup:Buttons.BackToEdit());
+                            replyMarkup: Buttons.BackToEdit());
                     }
                     else
                     {
@@ -547,7 +630,7 @@ namespace InfBot
                         await client.SendTextMessageAsync(message.Chat.Id, "Нет зарегистрированных пользователей");
                     }
                 }
-                
+
             }
         }
 

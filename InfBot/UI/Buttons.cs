@@ -142,7 +142,7 @@ namespace InfBot.UI
             {
                     new List<InlineKeyboardButton>
                     {
-                        InlineKeyboardButton.WithCallbackData(text: "Домашку", callbackData: "Домашку"),
+                        InlineKeyboardButton.WithCallbackData(text: "Д/З", callbackData: "Домашку"),
                         InlineKeyboardButton.WithCallbackData(text: "Материалы", callbackData: "Материалы")
                     },
                     new List<InlineKeyboardButton>
