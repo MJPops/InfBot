@@ -296,6 +296,7 @@ namespace InfBot
                     "Выберите предмет для редактирования:",
                     replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.SubjectsEdit());
                 Subject.subjectToChange = null;
+                BotUser.Maling = false;
             }
 
             else if (e.CallbackQuery.Data == "ДиффурыEdit")
@@ -492,7 +493,7 @@ namespace InfBot
 
             else if (e.CallbackQuery.Data == "Домашку")
             {
-                await client.SendTextMessageAsync(message.Chat.Id, "Введите дз (для переноса текста на новую строку пишите символ \\n");
+                await client.SendTextMessageAsync(message.Chat.Id, "Введите дз");
                 Subject.parametrSetingStatus = "Домашку";
             }
             else if (e.CallbackQuery.Data == "Материалы")
@@ -503,6 +504,50 @@ namespace InfBot
             else if (e.CallbackQuery.Data == "Расписание")
             {
                 await client.SendPhotoAsync(message.Chat.Id, Links.Timetable, replyMarkup: Buttons.BackToStart());
+            }
+
+            else if (e.CallbackQuery.Data == "Пользователи")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var users = dataBase.BotUsers.ToList();
+
+                    if (users.Any())
+                    {
+                        foreach (BotUser user in users)
+                        {
+                            await client.SendTextMessageAsync(message.Chat.Id, $"{user.Name} -- {user.Id}");
+                        }
+                        await client.SendTextMessageAsync(message.Chat.Id,
+                            $"Ваш Id -- {message.Chat.Id}",
+                            replyMarkup:Buttons.BackToEdit());
+                    }
+                    else
+                    {
+                        await client.SendTextMessageAsync(message.Chat.Id, "Нет зарегистрированных пользователей");
+                    }
+                }
+            }
+            else if (e.CallbackQuery.Data == "Рассылка")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var users = dataBase.BotUsers.ToList();
+
+                    if (users.Any())
+                    {
+                        await client.EditMessageTextAsync(message.Chat.Id,
+                            message.MessageId,
+                            "Введите сообщение для рассылки",
+                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.BackToEdit());
+                        BotUser.Maling = true;
+                    }
+                    else
+                    {
+                        await client.SendTextMessageAsync(message.Chat.Id, "Нет зарегистрированных пользователей");
+                    }
+                }
+                
             }
         }
 
@@ -561,15 +606,7 @@ namespace InfBot
                     Subject.parametrSetingStatus = null;
                     Subject.subjectToChange = null;
                 }
-
-                else if (message.Text == "Im Matvey")
-                {
-                    await client.SendTextMessageAsync(message.Chat.Id,
-                        "Выберите предмет для редактирования:",
-                        replyMarkup: Buttons.SubjectsEdit());
-                }
-                //Эта зона в конце ифов, все сабстринги располагать в порядке возрастания длинны подстроки
-                else if (message.Text.Substring(0, 5) == "Вывод")
+                else if (BotUser.Maling)
                 {
                     using (ApplicationContext dataBase = new ApplicationContext())
                     {
@@ -579,7 +616,7 @@ namespace InfBot
                         {
                             foreach (BotUser user in users)
                             {
-                                await client.SendTextMessageAsync(user.Id, message.Text.Substring(6));
+                                await client.SendTextMessageAsync(user.Id, message.Text);
                             }
                         }
                         else
@@ -587,7 +624,17 @@ namespace InfBot
                             await client.SendTextMessageAsync(message.Chat.Id, "Нет зарегистрированных пользователей");
                         }
                     }
+                    BotUser.Maling = false;
+                    await client.SendTextMessageAsync(message.Chat.Id, "Сообщение отправлено", replyMarkup: Buttons.BackToEdit());
                 }
+
+                else if (message.Text == "Im Matvey")
+                {
+                    await client.SendTextMessageAsync(message.Chat.Id,
+                        "Выберите предмет для редактирования:",
+                        replyMarkup: Buttons.SubjectsEdit());
+                }
+                //Эта зона в конце ифов, все сабстринги располагать в порядке возрастания длинны подстроки
                 else if (message.Text.Substring(0, 11) == "Регистрация")
                 {
                     Console.WriteLine(Convert.ToString(message.Chat.Id));
