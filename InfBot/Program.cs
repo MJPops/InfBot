@@ -103,7 +103,6 @@ namespace InfBot
                     Subject.subjectToChange = "1";
                 }
             }
-
             else if (e.CallbackQuery.Data == "Физика")
             {
                 using (ApplicationContext dataBase = new ApplicationContext())
@@ -123,7 +122,6 @@ namespace InfBot
                     Subject.subjectToChange = "2";
                 }
             }
-
             else if (e.CallbackQuery.Data == "ТОИ")
             {
                 using (ApplicationContext dataBase = new ApplicationContext())
@@ -143,7 +141,6 @@ namespace InfBot
                     Subject.subjectToChange = "5";
                 }
             }
-
             else if (e.CallbackQuery.Data == "ТВИМС")
             {
                 using (ApplicationContext dataBase = new ApplicationContext())
@@ -163,7 +160,6 @@ namespace InfBot
                     Subject.subjectToChange = "9";
                 }
             }
-
             else if (e.CallbackQuery.Data == "Социология")
             {
                 using (ApplicationContext dataBase = new ApplicationContext())
@@ -183,7 +179,6 @@ namespace InfBot
                     Subject.subjectToChange = "6";
                 }
             }
-
             else if (e.CallbackQuery.Data == "Философия")
             {
                 using (ApplicationContext dataBase = new ApplicationContext())
@@ -203,7 +198,6 @@ namespace InfBot
                     Subject.subjectToChange = "7";
                 }
             }
-
             else if (e.CallbackQuery.Data == "Физ-ра")
             {
                 using (ApplicationContext dataBase = new ApplicationContext())
@@ -223,7 +217,6 @@ namespace InfBot
                     Subject.subjectToChange = "4";
                 }
             }
-
             else if (e.CallbackQuery.Data == "ИнЯз")
             {
                 using (ApplicationContext dataBase = new ApplicationContext())
@@ -243,7 +236,6 @@ namespace InfBot
                     Subject.subjectToChange = "10";
                 }
             }
-
             else if (e.CallbackQuery.Data == "МСОПР")
             {
                 using (ApplicationContext dataBase = new ApplicationContext())
@@ -263,7 +255,6 @@ namespace InfBot
                     Subject.subjectToChange = "3";
                 }
             }
-
             else if (e.CallbackQuery.Data == "Программирование")
             {
                 using (ApplicationContext dataBase = new ApplicationContext())
@@ -283,7 +274,6 @@ namespace InfBot
                     Subject.subjectToChange = "8";
                 }
             }
-
             else if (e.CallbackQuery.Data == "Расписание")
             {
                 await client.SendPhotoAsync(message.Chat.Id, Links.Timetable, replyMarkup: Buttons.BackToStart());
@@ -298,6 +288,7 @@ namespace InfBot
                     replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.SubjectsEdit());
                 Subject.subjectToChange = null;
             }
+
             else if (e.CallbackQuery.Data == "ДиффурыEdit")
             {
                 using (ApplicationContext dataBase = new ApplicationContext())
@@ -576,7 +567,26 @@ namespace InfBot
                         "Выберите предмет для редактирования:",
                         replyMarkup: Buttons.SubjectsEdit());
                 }
-                //Эта зона в конце ифов, все сабстринги располагать в порядке убывания длинны подстроки
+                //Эта зона в конце ифов, все сабстринги располагать в порядке возрастания длинны подстроки
+                else if (message.Text.Substring(0, 5) == "Вывод")
+                {
+                    using (ApplicationContext dataBase = new ApplicationContext())
+                    {
+                        var users = dataBase.BotUsers.ToList();
+
+                        if (users.Any())
+                        {
+                            foreach (BotUser user in users)
+                            {
+                                await client.SendTextMessageAsync(user.Id, message.Text.Substring(6));
+                            }
+                        }
+                        else
+                        {
+                            await client.SendTextMessageAsync(message.Chat.Id, "Нет зарегистрированных пользователей");
+                        }
+                    }
+                }
                 else if (message.Text.Substring(0, 11) == "Регистрация")
                 {
                     Console.WriteLine(Convert.ToString(message.Chat.Id));
@@ -600,25 +610,8 @@ namespace InfBot
                         }
                     }
                 }
-                else if (message.Text.Substring(0, 5) == "Вывод")
-                {
-                    using (ApplicationContext dataBase = new ApplicationContext())
-                    {
-                        var users = dataBase.BotUsers.ToList();
-
-                        if (users.Any())
-                        {
-                            foreach (BotUser user in users)
-                            {
-                                await client.SendTextMessageAsync(user.Id, message.Text.Substring(6));
-                            }
-                        }
-                        else
-                        {
-                            await client.SendTextMessageAsync(message.Chat.Id, "Нет зарегистрированных пользователей");
-                        }
-                    }
-                }
+                //-----------------------------------------------------------------------------------
+                
             }
             catch
             {
