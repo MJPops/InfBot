@@ -1,6 +1,4 @@
-﻿using Telegram.Bot.Types;
-
-namespace InfBot.Models
+﻿namespace InfBot.Models
 {
     public class BotUser
     {

@@ -67,7 +67,7 @@ namespace InfBot.UI
                     },
                     new List<InlineKeyboardButton>
                     {
-                        InlineKeyboardButton.WithUrl(text: "Расписание", url: Links.Timetable)
+                        InlineKeyboardButton.WithCallbackData(text: "<<Назад", callbackData: "Предметы")
                     }
             });
             ;

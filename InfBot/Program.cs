@@ -330,12 +330,51 @@ namespace InfBot
                     await client.SendTextMessageAsync(message.Chat.Id, Messages.Start, replyMarkup: Buttons.Start());
                 }
 
+                else if (Subject.parametrSetingStatus != null)
+                {
+                    if (Subject.parametrSetingStatus == "Домашку")
+                    {
+                        using (ApplicationContext dataBase = new ApplicationContext())
+                        {
+                            var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                                  where subject.Id == Subject.subjectToChange
+                                                  select subject;
+
+                            foreach (Subject subject in selectedSubject)
+                            {
+                                subject.HomeWork = message.Text;
+                            }
+                            await dataBase.SaveChangesAsync();
+                            await client.SendTextMessageAsync(message.Chat.Id, "Изменено", replyMarkup: Buttons.BackToEdit());
+                        }
+                    }
+                    else if (Subject.parametrSetingStatus == "Материалы")
+                    {
+                        using (ApplicationContext dataBase = new ApplicationContext())
+                        {
+                            var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                                  where subject.Id == Subject.subjectToChange
+                                                  select subject;
+
+                            foreach (Subject subject in selectedSubject)
+                            {
+                                subject.SubjectLink = message.Text;
+                            }
+                            await dataBase.SaveChangesAsync();
+                            await client.SendTextMessageAsync(message.Chat.Id, "Изменено", replyMarkup: Buttons.BackToEdit());
+                        }
+                    }
+                    Subject.parametrSetingStatus = null;
+                    Subject.subjectToChange = null;
+                }
+
                 else if (message.Text == "Im Matvey")
                 {
                     await client.SendTextMessageAsync(message.Chat.Id,
                         "Выберите предмет для редактирования:",
                         replyMarkup: Buttons.SubjectsEdit());
                 }
+                //Эта зона в конце ифов, все сабстринги распологать в порядке убывания длинны подстроки
                 else if (message.Text.Substring(0, 11) == "Регистрация")
                 {
                     Console.WriteLine(Convert.ToString(message.Chat.Id));
@@ -378,43 +417,7 @@ namespace InfBot
                         }
                     }
                 }
-                else if (Subject.parametrSetingStatus != null)
-                {
-                    if (Subject.parametrSetingStatus == "Домашку")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
-                        {
-                            var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                                  where subject.Id == Subject.subjectToChange
-                                                  select subject;
-
-                            foreach (Subject subject in selectedSubject)
-                            {
-                                subject.HomeWork = message.Text;
-                            }
-                            await dataBase.SaveChangesAsync();
-                            await client.SendTextMessageAsync(message.Chat.Id, "Изменено", replyMarkup: Buttons.BackToEdit());
-                        }
-                    }
-                    else if (Subject.parametrSetingStatus == "Материалы")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
-                        {
-                            var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                                  where subject.Id == Subject.subjectToChange
-                                                  select subject;
-
-                            foreach (Subject subject in selectedSubject)
-                            {
-                                subject.SubjectLink = message.Text;
-                            }
-                            await dataBase.SaveChangesAsync();
-                            await client.SendTextMessageAsync(message.Chat.Id, "Изменено", replyMarkup: Buttons.BackToEdit());
-                        }
-                    }
-                    Subject.parametrSetingStatus = null;
-                    Subject.subjectToChange = null;
-                }
+                //--------------------------------------------------------------------------------------
             }
             catch
             {
