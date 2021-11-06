@@ -83,10 +83,301 @@ namespace InfBot
                     "Предметы:",
                     replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.Subjects());
             }
-            
+
             else if (e.CallbackQuery.Data == "Расписание")
             {
                 await client.SendPhotoAsync(message.Chat.Id, Links.Timetable, replyMarkup: Buttons.BackToStart());
+            }
+
+            else if (e.CallbackQuery.Data == "Диффуры")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                          where subject.Id == "1"
+                                          select subject;
+
+                    foreach (Subject subject in selectedSubject)
+                    {
+                        try
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+
+                        }
+                        catch
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                    message.MessageId,
+                                    $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        }
+                    }
+                    Subject.subjectToChange = "1";
+                }
+            }
+            else if (e.CallbackQuery.Data == "Физика")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                          where subject.Id == "2"
+                                          select subject;
+
+                    foreach (Subject subject in selectedSubject)
+                    {
+                        try
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+
+                        }
+                        catch
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                    message.MessageId,
+                                    $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        }
+                    }
+                    Subject.subjectToChange = "2";
+                }
+            }
+            else if (e.CallbackQuery.Data == "МСОПР")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                          where subject.Id == "3"
+                                          select subject;
+
+                    foreach (Subject subject in selectedSubject)
+                    {
+                        try
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+
+                        }
+                        catch
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                    message.MessageId,
+                                    $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        }
+                    }
+                    Subject.subjectToChange = "3";
+                }
+            }
+            else if (e.CallbackQuery.Data == "Физ-ра")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                          where subject.Id == "4"
+                                          select subject;
+
+                    foreach (Subject subject in selectedSubject)
+                    {
+                        try
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+
+                        }
+                        catch
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                    message.MessageId,
+                                    $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        }
+                    }
+                    Subject.subjectToChange = "4";
+                }
+            }
+            else if (e.CallbackQuery.Data == "ТОИ")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                          where subject.Id == "5"
+                                          select subject;
+
+                    foreach (Subject subject in selectedSubject)
+                    {
+                        try
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+
+                        }
+                        catch
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                    message.MessageId,
+                                    $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        }
+                    }
+                    Subject.subjectToChange = "5";
+                }
+            }
+            else if (e.CallbackQuery.Data == "Социология")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                          where subject.Id == "6"
+                                          select subject;
+
+                    foreach (Subject subject in selectedSubject)
+                    {
+                        try
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+
+                        }
+                        catch
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                    message.MessageId,
+                                    $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        }
+                    }
+                    Subject.subjectToChange = "6";
+                }
+            }
+            else if (e.CallbackQuery.Data == "Философия")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                          where subject.Id == "7"
+                                          select subject;
+
+                    foreach (Subject subject in selectedSubject)
+                    {
+                        try
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+
+                        }
+                        catch
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                    message.MessageId,
+                                    $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        }
+                    }
+                    Subject.subjectToChange = "7";
+                }
+            }
+            else if (e.CallbackQuery.Data == "Программирование")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                          where subject.Id == "8"
+                                          select subject;
+
+                    foreach (Subject subject in selectedSubject)
+                    {
+                        try
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+
+                        }
+                        catch
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                    message.MessageId,
+                                    $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        }
+                    }
+                    Subject.subjectToChange = "8";
+                }
+            }
+            else if (e.CallbackQuery.Data == "ТВИМС")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                          where subject.Id == "9"
+                                          select subject;
+
+                    foreach (Subject subject in selectedSubject)
+                    {
+                        try
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+
+                        }
+                        catch
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                    message.MessageId,
+                                    $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        }
+                    }
+                    Subject.subjectToChange = "9";
+                }
+            }
+            else if (e.CallbackQuery.Data == "ИнЯз")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedSubject = from subject in dataBase.Subjects.ToList()
+                                          where subject.Id == "10"
+                                          select subject;
+
+                    foreach (Subject subject in selectedSubject)
+                    {
+                        try
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+
+                        }
+                        catch
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                    message.MessageId,
+                                    $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        }
+                    }
+                    Subject.subjectToChange = "10";
+                }
             }
 
 
@@ -348,353 +639,63 @@ namespace InfBot
                     }
                 }
 
-            } 
-                    else if (e.CallbackQuery.Data == "Диффуры")
+            }
+
+            else if (e.CallbackQuery.Data.Substring(0, 2) == "id")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedUser = from user in dataBase.BotUsers.ToList()
+                                       where user.Id == e.CallbackQuery.Data.Substring(2)
+                                       select user;
+
+                    foreach (BotUser user in selectedUser)
                     {
-                        using (ApplicationContext dataBase = new ApplicationContext())
-                        {
-                            var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                                  where subject.Id == "1"
-                                                  select subject;
-
-                            foreach (Subject subject in selectedSubject)
-                            {
-                                try
-                                {
-                                    await client.EditMessageTextAsync(message.Chat.Id,
-                                        message.MessageId,
-                                        $"Диффуры Д/З: {subject.HomeWork ?? "Д/З нет"}",
-                                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
-
-                                }
-                                catch
-                                {
-                                    await client.EditMessageTextAsync(message.Chat.Id,
-                                            message.MessageId,
-                                            $"Диффуры Д/З: {subject.HomeWork ?? "Д/З нет"}",
-                                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
-                                }
-                            }
-                            Subject.subjectToChange = "1";
-                        }
+                        await client.EditMessageTextAsync(message.Chat.Id,
+                            message.MessageId,
+                            $"Имя: {user.Name}\n\n" +
+                            $"Id: {user.Id}",
+                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.UserModification(user.Id));
                     }
-                    else if (e.CallbackQuery.Data == "Физика")
+                }
+            }
+            else if (e.CallbackQuery.Data.Substring(0, 3) == "del")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedUser = from user in dataBase.BotUsers.ToList()
+                                       where user.Id == e.CallbackQuery.Data.Substring(3)
+                                       select user;
+
+                    foreach (BotUser user in selectedUser)
                     {
-                        using (ApplicationContext dataBase = new ApplicationContext())
-                        {
-                            var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                                  where subject.Id == "2"
-                                                  select subject;
-
-                            foreach (Subject subject in selectedSubject)
-                            {
-                                try
-                                {
-                                    await client.EditMessageTextAsync(message.Chat.Id,
-                                        message.MessageId,
-                                        $"Диффуры Д/З: {subject.HomeWork ?? "Д/З нет"}",
-                                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
-
-                                }
-                                catch
-                                {
-                                    await client.EditMessageTextAsync(message.Chat.Id,
-                                            message.MessageId,
-                                            $"Диффуры Д/З: {subject.HomeWork ?? "Д/З нет"}",
-                                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
-                                }
-                            }
-                            Subject.subjectToChange = "2";
-                        }
+                        await client.SendTextMessageAsync(user.Id, "Вас удалили из списка зарегистрированных пользователей");
+                        dataBase.Remove(user);
+                        await client.EditMessageTextAsync(message.Chat.Id,
+                            message.MessageId,
+                            "Пользователь удален");
                     }
-                    else if (e.CallbackQuery.Data == "МСОПР")
+                    await dataBase.SaveChangesAsync();
+                }
+            }
+            else if (e.CallbackQuery.Data.Substring(0, 4) == "edit")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedUser = from user in dataBase.BotUsers.ToList()
+                                       where user.Id == e.CallbackQuery.Data.Substring(4)
+                                       select user;
+
+                    foreach (BotUser user in selectedUser)
                     {
-                        using (ApplicationContext dataBase = new ApplicationContext())
-                        {
-                            var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                                  where subject.Id == "3"
-                                                  select subject;
-
-                            foreach (Subject subject in selectedSubject)
-                            {
-                                try 
-                                { 
-                                    await client.EditMessageTextAsync(message.Chat.Id,
-                                        message.MessageId,
-                                        $"Диффуры Д/З: {subject.HomeWork ?? "Д/З нет"}",
-                                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
-
-                                }
-                                catch
-                                {
-                                    await client.EditMessageTextAsync(message.Chat.Id,
-                                            message.MessageId,
-                                            $"Диффуры Д/З: {subject.HomeWork ?? "Д/З нет"}",
-                                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
-                                }
-                            }
-                            Subject.subjectToChange = "3";
-                        }
+                        BotUser.NameChanging = true;
+                        BotUser.IdToChange = e.CallbackQuery.Data.Substring(4);
+                        await client.EditMessageTextAsync(message.Chat.Id,
+                            message.MessageId,
+                            "Введите новое имя");
                     }
-                    else if (e.CallbackQuery.Data == "Физ-ра")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
-                        {
-                            var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                                  where subject.Id == "4"
-                                                  select subject;
+                }
 
-                            foreach (Subject subject in selectedSubject)
-                            {
-                                try
-                                {
-                                    await client.EditMessageTextAsync(message.Chat.Id,
-                                        message.MessageId,
-                                        $"Диффуры Д/З: {subject.HomeWork ?? "Д/З нет"}",
-                                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
-
-                                }
-                                catch
-                                {
-                                    await client.EditMessageTextAsync(message.Chat.Id,
-                                            message.MessageId,
-                                            $"Диффуры Д/З: {subject.HomeWork ?? "Д/З нет"}",
-                                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
-                                }
-                            }
-                            Subject.subjectToChange = "4";
-                        }
-                    }
-                    else if (e.CallbackQuery.Data == "ТОИ")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
-                        {
-                            var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                                  where subject.Id == "5"
-                                                  select subject;
-
-                            foreach (Subject subject in selectedSubject)
-                            {
-                                try
-                                {
-                                    await client.EditMessageTextAsync(message.Chat.Id,
-                                        message.MessageId,
-                                        $"Диффуры Д/З: {subject.HomeWork ?? "Д/З нет"}",
-                                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
-
-                                }
-                                catch
-                                {
-                                    await client.EditMessageTextAsync(message.Chat.Id,
-                                            message.MessageId,
-                                            $"Диффуры Д/З: {subject.HomeWork ?? "Д/З нет"}",
-                                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
-                                }
-                            }
-                            Subject.subjectToChange = "5";
-                        }
-                    }
-                    else if (e.CallbackQuery.Data == "Социология")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
-                        {
-                            var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                                  where subject.Id == "6"
-                                                  select subject;
-
-                            foreach (Subject subject in selectedSubject)
-                            {
-                                try
-                                {
-                                    await client.EditMessageTextAsync(message.Chat.Id,
-                                        message.MessageId,
-                                        $"Диффуры Д/З: {subject.HomeWork ?? "Д/З нет"}",
-                                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
-
-                                }
-                                catch
-                                {
-                                    await client.EditMessageTextAsync(message.Chat.Id,
-                                            message.MessageId,
-                                            $"Диффуры Д/З: {subject.HomeWork ?? "Д/З нет"}",
-                                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
-                                }
-                            }
-                            Subject.subjectToChange = "6";
-                        }
-                    }
-                    else if (e.CallbackQuery.Data == "Философия")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
-                        {
-                            var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                                  where subject.Id == "7"
-                                                  select subject;
-
-                            foreach (Subject subject in selectedSubject)
-                            {
-                                try
-                                {
-                                    await client.EditMessageTextAsync(message.Chat.Id,
-                                        message.MessageId,
-                                        $"Диффуры Д/З: {subject.HomeWork ?? "Д/З нет"}",
-                                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
-
-                                }
-                                catch
-                                {
-                                    await client.EditMessageTextAsync(message.Chat.Id,
-                                            message.MessageId,
-                                            $"Диффуры Д/З: {subject.HomeWork ?? "Д/З нет"}",
-                                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
-                                }
-                            }
-                            Subject.subjectToChange = "7";
-                        }
-                    }
-                    else if (e.CallbackQuery.Data == "Программирование")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
-                        {
-                            var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                                  where subject.Id == "8"
-                                                  select subject;
-
-                            foreach (Subject subject in selectedSubject)
-                            {
-                                try
-                                {
-                                    await client.EditMessageTextAsync(message.Chat.Id,
-                                        message.MessageId,
-                                        $"Диффуры Д/З: {subject.HomeWork ?? "Д/З нет"}",
-                                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
-
-                                }
-                                catch
-                                {
-                                    await client.EditMessageTextAsync(message.Chat.Id,
-                                            message.MessageId,
-                                            $"Диффуры Д/З: {subject.HomeWork ?? "Д/З нет"}",
-                                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
-                                }
-                            }
-                            Subject.subjectToChange = "8";
-                        }
-                    }
-                    else if (e.CallbackQuery.Data == "ТВИМС")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
-                        {
-                            var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                                  where subject.Id == "9"
-                                                  select subject;
-
-                            foreach (Subject subject in selectedSubject)
-                            {
-                                try
-                                { 
-                                    await client.EditMessageTextAsync(message.Chat.Id,
-                                        message.MessageId,
-                                        $"Диффуры Д/З: {subject.HomeWork ?? "Д/З нет"}",
-                                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
-
-                                }
-                                catch
-                                {  
-                                    await client.EditMessageTextAsync(message.Chat.Id,
-                                            message.MessageId,
-                                            $"Диффуры Д/З: {subject.HomeWork ?? "Д/З нет"}",
-                                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
-                                }
-                            }
-                            Subject.subjectToChange = "9";
-                        }
-                    }
-                    else if (e.CallbackQuery.Data == "ИнЯз")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
-                        {
-                            var selectedSubject = from subject in dataBase.Subjects.ToList()
-                                                  where subject.Id == "10"
-                                                  select subject;
-
-                            foreach (Subject subject in selectedSubject)
-                            {
-                                try
-                                {
-                                    await client.EditMessageTextAsync(message.Chat.Id,
-                                        message.MessageId,
-                                        $"Диффуры Д/З: {subject.HomeWork ?? "Д/З нет"}",
-                                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
-
-                                }
-                                catch
-                                {  
-                                    await client.EditMessageTextAsync(message.Chat.Id,
-                                            message.MessageId,
-                                            $"Диффуры Д/З: {subject.HomeWork ?? "Д/З нет"}",
-                                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
-                                }
-                            }
-                            Subject.subjectToChange = "10";
-                        }
-                    }
-
-                    else if (e.CallbackQuery.Data.Substring(0, 2) == "id")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
-                        {
-                            var selectedUser = from user in dataBase.BotUsers.ToList()
-                                               where user.Id == e.CallbackQuery.Data.Substring(2)
-                                               select user;
-
-                            foreach (BotUser user in selectedUser)
-                            {
-                                await client.EditMessageTextAsync(message.Chat.Id,
-                                    message.MessageId,
-                                    $"Имя: {user.Name}\n\n" +
-                                    $"Id: {user.Id}",
-                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.UserModification(user.Id));
-                            }
-                        }
-                    }
-                    else if (e.CallbackQuery.Data.Substring(0, 3) == "del")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
-                        {
-                            var selectedUser = from user in dataBase.BotUsers.ToList()
-                                               where user.Id == e.CallbackQuery.Data.Substring(3)
-                                               select user;
-
-                            foreach (BotUser user in selectedUser)
-                            {
-                                await client.SendTextMessageAsync(user.Id, "Вас удалили из списка зарегистрированных пользователей");
-                                dataBase.Remove(user);
-                                await client.EditMessageTextAsync(message.Chat.Id,
-                                    message.MessageId,
-                                    "Пользователь удален");
-                            }
-                            await dataBase.SaveChangesAsync();
-                        }
-                    }
-                    else if (e.CallbackQuery.Data.Substring(0, 4) == "edit")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
-                        {
-                            var selectedUser = from user in dataBase.BotUsers.ToList()
-                                               where user.Id == e.CallbackQuery.Data.Substring(4)
-                                               select user;
-
-                            foreach (BotUser user in selectedUser)
-                            {
-                                BotUser.NameChanging = true;
-                                BotUser.IdToChange = e.CallbackQuery.Data.Substring(4);
-                                await client.EditMessageTextAsync(message.Chat.Id,
-                                    message.MessageId,
-                                    "Введите новое имя");
-                            }
-                        }
-                    
             }
         }
 
@@ -824,8 +825,8 @@ namespace InfBot
                         }
                     }
                 }
-              
-                
+
+
             }
             catch
             {
