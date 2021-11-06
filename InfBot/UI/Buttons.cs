@@ -62,8 +62,20 @@ namespace InfBot.UI
             {
                     new List<InlineKeyboardButton>
                     {
+                        InlineKeyboardButton.WithCallbackData(text: "<<Назад", callbackData: "Предметы"),
+                        InlineKeyboardButton.WithCallbackData(text: "Домашка", callbackData: "Домашка")
+                    }
+            });
+            ;
+        }
+        public static IReplyMarkup InSubject(string link)
+        {
+            return new InlineKeyboardMarkup(new List<List<InlineKeyboardButton>>
+            {
+                    new List<InlineKeyboardButton>
+                    {
                         InlineKeyboardButton.WithCallbackData(text: "Домашка", callbackData: "Домашка"),
-                        InlineKeyboardButton.WithUrl(text: "Материалы", url: Links.Materials)
+                        InlineKeyboardButton.WithUrl(text: "Материалы", url: link)
                     },
                     new List<InlineKeyboardButton>
                     {

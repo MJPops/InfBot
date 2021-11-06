@@ -8,13 +8,13 @@
         public string Id { get; set; }
         public string Name { get; set; }
         public string HomeWork { get; set; }
-        public string SubjectLink { get; set; }
+        public string Link { get; set; }
 
         public Subject()
         {
             Name = null;
             HomeWork = null;
-            SubjectLink = null;
+            Link = null;
         }
     }
 }

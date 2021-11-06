@@ -94,11 +94,20 @@ namespace InfBot
 
                     foreach (Subject subject in selectedSubject)
                     {
-                        await client.EditMessageTextAsync(message.Chat.Id,
-                            message.MessageId,
-                            $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.SubjectLink}",
-                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        if (subject.Link == null)
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"Дз: {subject.HomeWork}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        }
+                        else
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"Дз: {subject.HomeWork}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+                        }
                     }
                     Subject.subjectToChange = "1";
                 }
@@ -116,7 +125,7 @@ namespace InfBot
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
                             $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.SubjectLink}",
+                            $"Материалы: {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
                     }
                     Subject.subjectToChange = "2";
@@ -135,7 +144,7 @@ namespace InfBot
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
                             $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.SubjectLink}",
+                            $"Материалы: {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
                     }
                     Subject.subjectToChange = "5";
@@ -154,7 +163,7 @@ namespace InfBot
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
                             $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.SubjectLink}",
+                            $"Материалы: {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
                     }
                     Subject.subjectToChange = "9";
@@ -173,7 +182,7 @@ namespace InfBot
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
                             $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.SubjectLink}",
+                            $"Материалы: {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
                     }
                     Subject.subjectToChange = "6";
@@ -192,7 +201,7 @@ namespace InfBot
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
                             $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.SubjectLink}",
+                            $"Материалы: {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
                     }
                     Subject.subjectToChange = "7";
@@ -211,7 +220,7 @@ namespace InfBot
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
                             $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.SubjectLink}",
+                            $"Материалы: {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
                     }
                     Subject.subjectToChange = "4";
@@ -230,7 +239,7 @@ namespace InfBot
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
                             $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.SubjectLink}",
+                            $"Материалы: {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
                     }
                     Subject.subjectToChange = "10";
@@ -249,7 +258,7 @@ namespace InfBot
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
                             $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.SubjectLink}",
+                            $"Материалы: {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
                     }
                     Subject.subjectToChange = "3";
@@ -268,7 +277,7 @@ namespace InfBot
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
                             $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.SubjectLink}",
+                            $"Материалы: {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
                     }
                     Subject.subjectToChange = "8";
@@ -302,7 +311,7 @@ namespace InfBot
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
                             $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.SubjectLink}",
+                            $"Материалы: {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
                     Subject.subjectToChange = "1";
@@ -321,7 +330,7 @@ namespace InfBot
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
                             $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.SubjectLink}",
+                            $"Материалы: {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
                     Subject.subjectToChange = "2";
@@ -340,7 +349,7 @@ namespace InfBot
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
                             $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.SubjectLink}",
+                            $"Материалы: {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
                     Subject.subjectToChange = "3";
@@ -359,7 +368,7 @@ namespace InfBot
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
                             $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.SubjectLink}",
+                            $"Материалы: {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
                     Subject.subjectToChange = "4";
@@ -378,7 +387,7 @@ namespace InfBot
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
                             $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.SubjectLink}",
+                            $"Материалы: {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
                     Subject.subjectToChange = "5";
@@ -397,7 +406,7 @@ namespace InfBot
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
                             $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.SubjectLink}",
+                            $"Материалы: {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
                     Subject.subjectToChange = "6";
@@ -416,7 +425,7 @@ namespace InfBot
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
                             $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.SubjectLink}",
+                            $"Материалы: {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
                     Subject.subjectToChange = "7";
@@ -435,7 +444,7 @@ namespace InfBot
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
                             $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.SubjectLink}",
+                            $"Материалы: {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
                     Subject.subjectToChange = "8";
@@ -454,7 +463,7 @@ namespace InfBot
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
                             $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.SubjectLink}",
+                            $"Материалы: {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
 
@@ -474,7 +483,7 @@ namespace InfBot
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
                             $"Дз: {subject.HomeWork}\n\n" +
-                            $"Материалы: {subject.SubjectLink}",
+                            $"Материалы: {subject.Link}",
                             replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
                     }
                     Subject.subjectToChange = "10";
@@ -490,14 +499,6 @@ namespace InfBot
             {
                 await client.SendTextMessageAsync(message.Chat.Id, "Введите ссылку на материалы");
                 Subject.parametrSetingStatus = "Материалы";
-            }
-            else if (e.CallbackQuery.Data == "Диффуры")
-            {
-                await client.EditMessageTextAsync(
-                    message.Chat.Id,
-                    message.MessageId,
-                    "Диффуры:",
-                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
             }
             else if (e.CallbackQuery.Data == "Расписание")
             {
@@ -551,7 +552,7 @@ namespace InfBot
 
                             foreach (Subject subject in selectedSubject)
                             {
-                                subject.SubjectLink = message.Text;
+                                subject.Link = message.Text;
                             }
                             await dataBase.SaveChangesAsync();
                             await client.SendTextMessageAsync(message.Chat.Id, "Изменено", replyMarkup: Buttons.BackToEdit());
