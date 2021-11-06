@@ -6,6 +6,7 @@ namespace HelloApp
     public class ApplicationContext : DbContext
     {
         public DbSet<Subject> Subjects { get; set; }
+        public DbSet<BotUser> BotUsers { get; set; }
 
         public ApplicationContext()
         {
@@ -14,7 +15,7 @@ namespace HelloApp
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Subject;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=InfBot;Trusted_Connection=True;");
         }
     }
 }

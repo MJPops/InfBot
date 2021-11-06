@@ -25,7 +25,6 @@ namespace InfBot
                     var selectedSubjects = dataBase.Subjects.ToList();
                     if (!selectedSubjects.Any())
                     {
-                        dataBase.Add(new Subject { Id = "1", Name = "Диффуры"});
                         dataBase.Add(new Subject { Id = "1", Name = "Диффуры" });
                         dataBase.Add(new Subject { Id = "2", Name = "Физика" });
                         dataBase.Add(new Subject { Id = "3", Name = "МСОПР" });
@@ -378,7 +377,7 @@ namespace InfBot
                 else if (message.Text.Substring(0, 11) == "Регистрация")
                 {
                     Console.WriteLine(Convert.ToString(message.Chat.Id));
-                    using (ApplicationContextForUsers dataBase = new ApplicationContextForUsers())
+                    using (ApplicationContext dataBase = new ApplicationContext())
                     {
                         var users = dataBase.BotUsers.ToList();
                         var selectedBotUser = from user in users
@@ -400,7 +399,7 @@ namespace InfBot
                 }
                 else if (message.Text.Substring(0, 5) == "Вывод")
                 {
-                    using (ApplicationContextForUsers dataBase = new ApplicationContextForUsers())
+                    using (ApplicationContext dataBase = new ApplicationContext())
                     {
                         var users = dataBase.BotUsers.ToList();
 
