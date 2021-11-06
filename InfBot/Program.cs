@@ -516,11 +516,13 @@ namespace InfBot
                     {
                         foreach (BotUser user in users)
                         {
-                            await client.SendTextMessageAsync(message.Chat.Id, $"{user.Name} -- {user.Id}");
+                            await client.SendTextMessageAsync(message.Chat.Id,
+                                $"{user.Name}:",
+                                replyMarkup: Buttons.UserWithId(user.Id));
                         }
                         await client.SendTextMessageAsync(message.Chat.Id,
                             $"Ваш Id -- {message.Chat.Id}",
-                            replyMarkup:Buttons.BackToEdit());
+                            replyMarkup: Buttons.BackToEdit());
                     }
                     else
                     {
@@ -547,7 +549,72 @@ namespace InfBot
                         await client.SendTextMessageAsync(message.Chat.Id, "Нет зарегистрированных пользователей");
                     }
                 }
-                
+
+            }
+            else
+            {
+                try
+                {
+                    if (e.CallbackQuery.Data.Substring(0, 2) == "id")
+                    {
+                        using (ApplicationContext dataBase = new ApplicationContext())
+                        {
+                            var selectedUser = from user in dataBase.BotUsers.ToList()
+                                               where user.Id == e.CallbackQuery.Data.Substring(2)
+                                               select user;
+
+                            foreach (BotUser user in selectedUser)
+                            {
+                                await client.EditMessageTextAsync(message.Chat.Id,
+                                    message.MessageId,
+                                    $"Имя: {user.Name}\n\n" +
+                                    $"Id: {user.Id}",
+                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.UserModification(user.Id));
+                            }
+                        }
+                    }
+                    else if (e.CallbackQuery.Data.Substring(0, 3) == "del")
+                    {
+                        using (ApplicationContext dataBase = new ApplicationContext())
+                        {
+                            var selectedUser = from user in dataBase.BotUsers.ToList()
+                                               where user.Id == e.CallbackQuery.Data.Substring(3)
+                                               select user;
+
+                            foreach (BotUser user in selectedUser)
+                            {
+                                await client.SendTextMessageAsync(user.Id, "Вас удалили из списка зарегистрированных пользователей");
+                                dataBase.Remove(user);
+                                await client.EditMessageTextAsync(message.Chat.Id,
+                                    message.MessageId,
+                                    "Пользователь удален");
+                            }
+                            await dataBase.SaveChangesAsync();
+                        }
+                    }
+                    else if (e.CallbackQuery.Data.Substring(0, 4) == "edit")
+                    {
+                        using (ApplicationContext dataBase = new ApplicationContext())
+                        {
+                            var selectedUser = from user in dataBase.BotUsers.ToList()
+                                               where user.Id == e.CallbackQuery.Data.Substring(4)
+                                               select user;
+
+                            foreach (BotUser user in selectedUser)
+                            {
+                                BotUser.NameChanging = true;
+                                BotUser.IdToChange = e.CallbackQuery.Data.Substring(4);
+                                await client.EditMessageTextAsync(message.Chat.Id,
+                                    message.MessageId,
+                                    "Введите новое имя");
+                            }
+                        }
+                    }
+                }
+                catch
+                {
+
+                }
             }
         }
 
@@ -626,6 +693,25 @@ namespace InfBot
                     }
                     BotUser.Maling = false;
                     await client.SendTextMessageAsync(message.Chat.Id, "Сообщение отправлено", replyMarkup: Buttons.BackToEdit());
+                }
+                else if (BotUser.NameChanging)
+                {
+                    using (ApplicationContext dataBase = new ApplicationContext())
+                    {
+                        var selectedUser = from user in dataBase.BotUsers.ToList()
+                                           where user.Id == BotUser.IdToChange
+                                           select user;
+
+                        foreach (BotUser user in selectedUser)
+                        {
+                            user.Name = message.Text;
+                            await client.SendTextMessageAsync(message.Chat.Id, "Имя заменено", replyMarkup: Buttons.BackToEdit());
+                            await client.SendTextMessageAsync(BotUser.IdToChange, $"Ваше имя изменили на {message.Text}");
+                        }
+                        await dataBase.SaveChangesAsync();
+                    }
+                    BotUser.IdToChange = null;
+                    BotUser.NameChanging = false;
                 }
 
                 else if (message.Text == "Im Matvey")

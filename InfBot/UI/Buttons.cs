@@ -163,5 +163,28 @@ namespace InfBot.UI
             });
             ;
         }
+        public static IReplyMarkup UserWithId(string id)
+        {
+            return new InlineKeyboardMarkup(new List<List<InlineKeyboardButton>>
+            {
+                    new List<InlineKeyboardButton>
+                    {
+                        InlineKeyboardButton.WithCallbackData(text: $"ID-{id}", callbackData: $"id{id}")
+                    }
+            });
+            ;
+        }
+        public static IReplyMarkup UserModification(string id)
+        {
+            return new InlineKeyboardMarkup(new List<List<InlineKeyboardButton>>
+            {
+                    new List<InlineKeyboardButton>
+                    {
+                        InlineKeyboardButton.WithCallbackData(text: $"Удалить", callbackData: $"del{id}"),
+                        InlineKeyboardButton.WithCallbackData(text: $"Переименовать", callbackData: $"edit{id}")
+                    }
+            });
+            ;
+        }
     }
 }
