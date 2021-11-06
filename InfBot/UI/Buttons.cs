@@ -15,6 +15,10 @@ namespace InfBot.UI
                     },
                     new List<InlineKeyboardButton>
                     {
+                        InlineKeyboardButton.WithCallbackData(text: "Дистанционные занятия", callbackData: "ДистантСсылки")
+                    },
+                    new List<InlineKeyboardButton>
+                    {
                         InlineKeyboardButton.WithCallbackData(text: "Расписание", callbackData: "Расписание")
                     }
             });
@@ -82,6 +86,25 @@ namespace InfBot.UI
             });
             ;
         }
+        public static IReplyMarkup InSubject(string link, string linkToLesson)
+        {
+            return new InlineKeyboardMarkup(new List<List<InlineKeyboardButton>>
+            {
+                    new List<InlineKeyboardButton>
+                    {
+                        InlineKeyboardButton.WithUrl(text: "Материалы", url: link)
+                    },
+                    new List<InlineKeyboardButton>
+                    {
+                        InlineKeyboardButton.WithUrl(text: "Дист. занятие", url: linkToLesson)
+                    },
+                    new List<InlineKeyboardButton>
+                    {
+                        InlineKeyboardButton.WithCallbackData(text: "<<Назад", callbackData: "Предметы")
+                    }
+            });
+            ;
+        }
         public static IReplyMarkup BackToStart()
         {
             return new InlineKeyboardMarkup(new List<List<InlineKeyboardButton>>
@@ -89,6 +112,17 @@ namespace InfBot.UI
                     new List<InlineKeyboardButton>
                     {
                         InlineKeyboardButton.WithCallbackData(text: "Меню", callbackData: "/start"),
+                    }
+            });
+            ;
+        }
+        public static IReplyMarkup LinkOnly( string link)
+        {
+            return new InlineKeyboardMarkup(new List<List<InlineKeyboardButton>>
+            {
+                    new List<InlineKeyboardButton>
+                    {
+                        InlineKeyboardButton.WithUrl(text: "Ссылка", url: link)
                     }
             });
             ;

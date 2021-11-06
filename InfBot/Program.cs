@@ -16,29 +16,10 @@ namespace InfBot
 
 
         [Obsolete]
-        static async Task Main()
+        static void Main()
         {
             try
             {
-                using (ApplicationContext dataBase = new ApplicationContext())
-                {
-                    var selectedSubjects = dataBase.Subjects.ToList();
-                    if (!selectedSubjects.Any())
-                    {
-                        dataBase.Add(new Subject { Id = "1", Name = "Диффуры" });
-                        dataBase.Add(new Subject { Id = "2", Name = "Физика" });
-                        dataBase.Add(new Subject { Id = "3", Name = "МСОПР" });
-                        dataBase.Add(new Subject { Id = "4", Name = "Физ-ра" });
-                        dataBase.Add(new Subject { Id = "5", Name = "ТОИ" });
-                        dataBase.Add(new Subject { Id = "6", Name = "Социология" });
-                        dataBase.Add(new Subject { Id = "7", Name = "Философия" });
-                        dataBase.Add(new Subject { Id = "8", Name = "Программирование" });
-                        dataBase.Add(new Subject { Id = "9", Name = "ТВИМС" });
-                        dataBase.Add(new Subject { Id = "10", Name = "ИнЯз" });
-                        await dataBase.SaveChangesAsync();
-                    }
-                }
-
                 client = new TelegramBotClient(token);
                 client.StartReceiving();
                 client.OnMessage += OnMessageHandler;
@@ -104,15 +85,40 @@ namespace InfBot
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
                                 $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
-                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                Buttons.InSubject(subject.Link,subject.LinkToLesson));
 
                         }
                         catch
                         {
-                            await client.EditMessageTextAsync(message.Chat.Id,
+                            try
+                            {
+                                await client.EditMessageTextAsync(message.Chat.Id,
                                     message.MessageId,
                                     $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
-                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                    Buttons.InSubject(subject.Link));
+
+                            }
+                            catch
+                            {
+                                try
+                                {
+                                    await client.EditMessageTextAsync(message.Chat.Id,
+                                        message.MessageId,
+                                        $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                        Buttons.InSubject(subject.LinkToLesson));
+
+                                }
+                                catch
+                                {
+                                    await client.EditMessageTextAsync(message.Chat.Id,
+                                            message.MessageId,
+                                            $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                                }
+                            }
                         }
                     }
                     Subject.subjectToChange = "1";
@@ -132,16 +138,41 @@ namespace InfBot
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
-                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+                                $"Физика Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                Buttons.InSubject(subject.Link, subject.LinkToLesson));
 
                         }
                         catch
                         {
-                            await client.EditMessageTextAsync(message.Chat.Id,
+                            try
+                            {
+                                await client.EditMessageTextAsync(message.Chat.Id,
                                     message.MessageId,
-                                    $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
-                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                                    $"Физика Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                    Buttons.InSubject(subject.Link));
+
+                            }
+                            catch
+                            {
+                                try
+                                {
+                                    await client.EditMessageTextAsync(message.Chat.Id,
+                                        message.MessageId,
+                                        $"Физика Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                        Buttons.InSubject(subject.LinkToLesson));
+
+                                }
+                                catch
+                                {
+                                    await client.EditMessageTextAsync(message.Chat.Id,
+                                            message.MessageId,
+                                            $"Физика Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                                }
+                            }
                         }
                     }
                     Subject.subjectToChange = "2";
@@ -161,16 +192,41 @@ namespace InfBot
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
-                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+                                $"МСОПР Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                Buttons.InSubject(subject.Link, subject.LinkToLesson));
 
                         }
                         catch
                         {
-                            await client.EditMessageTextAsync(message.Chat.Id,
+                            try
+                            {
+                                await client.EditMessageTextAsync(message.Chat.Id,
                                     message.MessageId,
-                                    $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
-                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                                    $"МСОПР Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                    Buttons.InSubject(subject.Link));
+
+                            }
+                            catch
+                            {
+                                try
+                                {
+                                    await client.EditMessageTextAsync(message.Chat.Id,
+                                        message.MessageId,
+                                        $"МСОПР Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                        Buttons.InSubject(subject.LinkToLesson));
+
+                                }
+                                catch
+                                {
+                                    await client.EditMessageTextAsync(message.Chat.Id,
+                                            message.MessageId,
+                                            $"МСОПР Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                                }
+                            }
                         }
                     }
                     Subject.subjectToChange = "3";
@@ -190,16 +246,41 @@ namespace InfBot
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
-                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+                                $"Физ-ра Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                Buttons.InSubject(subject.Link, subject.LinkToLesson));
 
                         }
                         catch
                         {
-                            await client.EditMessageTextAsync(message.Chat.Id,
+                            try
+                            {
+                                await client.EditMessageTextAsync(message.Chat.Id,
                                     message.MessageId,
-                                    $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
-                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                                    $"Физ-ра Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                    Buttons.InSubject(subject.Link));
+
+                            }
+                            catch
+                            {
+                                try
+                                {
+                                    await client.EditMessageTextAsync(message.Chat.Id,
+                                        message.MessageId,
+                                        $"Физ-ра Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                        Buttons.InSubject(subject.LinkToLesson));
+
+                                }
+                                catch
+                                {
+                                    await client.EditMessageTextAsync(message.Chat.Id,
+                                            message.MessageId,
+                                            $"Физ-ра Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                                }
+                            }
                         }
                     }
                     Subject.subjectToChange = "4";
@@ -219,16 +300,41 @@ namespace InfBot
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
-                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+                                $"ТОИ Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                Buttons.InSubject(subject.Link, subject.LinkToLesson));
 
                         }
                         catch
                         {
-                            await client.EditMessageTextAsync(message.Chat.Id,
+                            try
+                            {
+                                await client.EditMessageTextAsync(message.Chat.Id,
                                     message.MessageId,
-                                    $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
-                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                                    $"ТОИ Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                    Buttons.InSubject(subject.Link));
+
+                            }
+                            catch
+                            {
+                                try
+                                {
+                                    await client.EditMessageTextAsync(message.Chat.Id,
+                                        message.MessageId,
+                                        $"ТОИ Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                        Buttons.InSubject(subject.LinkToLesson));
+
+                                }
+                                catch
+                                {
+                                    await client.EditMessageTextAsync(message.Chat.Id,
+                                            message.MessageId,
+                                            $"ТОИ Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                                }
+                            }
                         }
                     }
                     Subject.subjectToChange = "5";
@@ -248,16 +354,41 @@ namespace InfBot
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
-                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+                                $"Социология Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                Buttons.InSubject(subject.Link, subject.LinkToLesson));
 
                         }
                         catch
                         {
-                            await client.EditMessageTextAsync(message.Chat.Id,
+                            try
+                            {
+                                await client.EditMessageTextAsync(message.Chat.Id,
                                     message.MessageId,
-                                    $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
-                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                                    $"Социология Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                    Buttons.InSubject(subject.Link));
+
+                            }
+                            catch
+                            {
+                                try
+                                {
+                                    await client.EditMessageTextAsync(message.Chat.Id,
+                                        message.MessageId,
+                                        $"Социология Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                        Buttons.InSubject(subject.LinkToLesson));
+
+                                }
+                                catch
+                                {
+                                    await client.EditMessageTextAsync(message.Chat.Id,
+                                            message.MessageId,
+                                            $"Социология Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                                }
+                            }
                         }
                     }
                     Subject.subjectToChange = "6";
@@ -277,16 +408,41 @@ namespace InfBot
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
-                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+                                $"Философия Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                Buttons.InSubject(subject.Link, subject.LinkToLesson));
 
                         }
                         catch
                         {
-                            await client.EditMessageTextAsync(message.Chat.Id,
+                            try
+                            {
+                                await client.EditMessageTextAsync(message.Chat.Id,
                                     message.MessageId,
-                                    $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
-                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                                    $"Философия Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                    Buttons.InSubject(subject.Link));
+
+                            }
+                            catch
+                            {
+                                try
+                                {
+                                    await client.EditMessageTextAsync(message.Chat.Id,
+                                        message.MessageId,
+                                        $"Философия Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                        Buttons.InSubject(subject.LinkToLesson));
+
+                                }
+                                catch
+                                {
+                                    await client.EditMessageTextAsync(message.Chat.Id,
+                                            message.MessageId,
+                                            $"Философия Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                                }
+                            }
                         }
                     }
                     Subject.subjectToChange = "7";
@@ -306,16 +462,41 @@ namespace InfBot
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
-                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+                                $"Программирование Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                Buttons.InSubject(subject.Link, subject.LinkToLesson));
 
                         }
                         catch
                         {
-                            await client.EditMessageTextAsync(message.Chat.Id,
+                            try
+                            {
+                                await client.EditMessageTextAsync(message.Chat.Id,
                                     message.MessageId,
-                                    $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
-                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                                    $"Программирование Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                    Buttons.InSubject(subject.Link));
+
+                            }
+                            catch
+                            {
+                                try
+                                {
+                                    await client.EditMessageTextAsync(message.Chat.Id,
+                                        message.MessageId,
+                                        $"Программирование Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                        Buttons.InSubject(subject.LinkToLesson));
+
+                                }
+                                catch
+                                {
+                                    await client.EditMessageTextAsync(message.Chat.Id,
+                                            message.MessageId,
+                                            $"Программирование Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                                }
+                            }
                         }
                     }
                     Subject.subjectToChange = "8";
@@ -335,16 +516,41 @@ namespace InfBot
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
-                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+                                $"ТВИМС Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                Buttons.InSubject(subject.Link, subject.LinkToLesson));
 
                         }
                         catch
                         {
-                            await client.EditMessageTextAsync(message.Chat.Id,
+                            try
+                            {
+                                await client.EditMessageTextAsync(message.Chat.Id,
                                     message.MessageId,
-                                    $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
-                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                                    $"ТВИМС Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                    Buttons.InSubject(subject.Link));
+
+                            }
+                            catch
+                            {
+                                try
+                                {
+                                    await client.EditMessageTextAsync(message.Chat.Id,
+                                        message.MessageId,
+                                        $"ТВИМС Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                        Buttons.InSubject(subject.LinkToLesson));
+
+                                }
+                                catch
+                                {
+                                    await client.EditMessageTextAsync(message.Chat.Id,
+                                            message.MessageId,
+                                            $"ТВИМС Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                                }
+                            }
                         }
                     }
                     Subject.subjectToChange = "9";
@@ -364,16 +570,41 @@ namespace InfBot
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
-                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
+                                $"ИнЯз Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                Buttons.InSubject(subject.Link, subject.LinkToLesson));
 
                         }
                         catch
                         {
-                            await client.EditMessageTextAsync(message.Chat.Id,
+                            try
+                            {
+                                await client.EditMessageTextAsync(message.Chat.Id,
                                     message.MessageId,
-                                    $"Диффуры Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
-                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                                    $"ИнЯз Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                    Buttons.InSubject(subject.Link));
+
+                            }
+                            catch
+                            {
+                                try
+                                {
+                                    await client.EditMessageTextAsync(message.Chat.Id,
+                                        message.MessageId,
+                                        $"ИнЯз Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                        Buttons.InSubject(subject.LinkToLesson));
+
+                                }
+                                catch
+                                {
+                                    await client.EditMessageTextAsync(message.Chat.Id,
+                                            message.MessageId,
+                                            $"ИнЯз Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                                }
+                            }
                         }
                     }
                     Subject.subjectToChange = "10";
@@ -715,6 +946,11 @@ namespace InfBot
                 if (message.Text == "/start")
                 {
                     await client.SendTextMessageAsync(message.Chat.Id, Messages.Start, replyMarkup: Buttons.Start());
+                }
+                else if (message.Text == "Заполнить предметы")
+                {
+                    await Subject.AddStandartSubjectsAsync();
+                    await client.SendTextMessageAsync(message.Chat.Id, "Данные по предметам заполнены");
                 }
 
                 else if (Subject.parametrSetingStatus != null)
