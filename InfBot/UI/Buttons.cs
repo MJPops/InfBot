@@ -62,8 +62,7 @@ namespace InfBot.UI
             {
                     new List<InlineKeyboardButton>
                     {
-                        InlineKeyboardButton.WithCallbackData(text: "<<Назад", callbackData: "Предметы"),
-                        InlineKeyboardButton.WithCallbackData(text: "Домашка", callbackData: "Домашка")
+                        InlineKeyboardButton.WithCallbackData(text: "<<Назад", callbackData: "Предметы")
                     }
             });
             ;
@@ -74,7 +73,6 @@ namespace InfBot.UI
             {
                     new List<InlineKeyboardButton>
                     {
-                        InlineKeyboardButton.WithCallbackData(text: "Домашка", callbackData: "Домашка"),
                         InlineKeyboardButton.WithUrl(text: "Материалы", url: link)
                     },
                     new List<InlineKeyboardButton>
@@ -159,6 +157,29 @@ namespace InfBot.UI
                     new List<InlineKeyboardButton>
                     {
                         InlineKeyboardButton.WithCallbackData(text: "К Предметам", callbackData: "Im Matvey")
+                    }
+            });
+            ;
+        }
+        public static IReplyMarkup UserWithId(string id)
+        {
+            return new InlineKeyboardMarkup(new List<List<InlineKeyboardButton>>
+            {
+                    new List<InlineKeyboardButton>
+                    {
+                        InlineKeyboardButton.WithCallbackData(text: $"ID-{id}", callbackData: $"id{id}")
+                    }
+            });
+            ;
+        }
+        public static IReplyMarkup UserModification(string id)
+        {
+            return new InlineKeyboardMarkup(new List<List<InlineKeyboardButton>>
+            {
+                    new List<InlineKeyboardButton>
+                    {
+                        InlineKeyboardButton.WithCallbackData(text: $"Удалить", callbackData: $"del{id}"),
+                        InlineKeyboardButton.WithCallbackData(text: $"Переименовать", callbackData: $"edit{id}")
                     }
             });
             ;

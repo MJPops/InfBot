@@ -98,14 +98,14 @@ namespace InfBot
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"Диффуры Д/З: {subject.HomeWork}",
+                                $"Диффуры Д/З: {subject.HomeWork ?? "Д/З нет"}",
                                 replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
                         }
                         else
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"Диффуры Д/З: {subject.HomeWork}",
+                                $"Диффуры Д/З: {subject.HomeWork ?? "Д/З нет"}",
                                 replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
                         }
                     }
@@ -126,14 +126,14 @@ namespace InfBot
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"Физика Д/З: {subject.HomeWork}",
+                                $"Физика Д/З: {subject.HomeWork ?? "Д/З нет"}",
                                 replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
                         }
                         else
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"Физика Д/З: {subject.HomeWork}",
+                                $"Физика Д/З: {subject.HomeWork ?? "Д/З нет"}",
                                 replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
                         }
                     }
@@ -154,14 +154,14 @@ namespace InfBot
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"МСОПР Д/З: {subject.HomeWork}",
+                                $"МСОПР Д/З: {subject.HomeWork ?? "Д/З нет"}",
                                 replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
                         }
                         else
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"МСОПР Д/З: {subject.HomeWork}",
+                                $"МСОПР Д/З: {subject.HomeWork ?? "Д/З нет"}",
                                 replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
                         }
                     }
@@ -182,14 +182,14 @@ namespace InfBot
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"Физ-ра Д/З: {subject.HomeWork}",
+                                $"Физ-ра Д/З: {subject.HomeWork ?? "Д/З нет"}",
                                 replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
                         }
                         else
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"Физ-ра Д/З: {subject.HomeWork}",
+                                $"Физ-ра Д/З: {subject.HomeWork ?? "Д/З нет"}",
                                 replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
                         }
                     }
@@ -210,14 +210,14 @@ namespace InfBot
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"ТОИ Д/З: {subject.HomeWork}",
+                                $"ТОИ Д/З: {subject.HomeWork ?? "Д/З нет"}",
                                 replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
                         }
                         else
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"ТОИ Д/З: {subject.HomeWork}",
+                                $"ТОИ Д/З: {subject.HomeWork ?? "Д/З нет"}",
                                 replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
                         }
                     }
@@ -238,14 +238,14 @@ namespace InfBot
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"Социология Д/З: {subject.HomeWork}",
+                                $"Социология Д/З: {subject.HomeWork ?? "Д/З нет"}",
                                 replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
                         }
                         else
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"Социология Д/З: {subject.HomeWork}",
+                                $"Социология Д/З: {subject.HomeWork ?? "Д/З нет"}",
                                 replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
                         }
                     }
@@ -266,14 +266,14 @@ namespace InfBot
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"Философия Д/З: {subject.HomeWork}",
+                                $"Философия Д/З: {subject.HomeWork ?? "Д/З нет"}",
                                 replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
                         }
                         else
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"Философия Д/З: {subject.HomeWork}",
+                                $"Философия Д/З: {subject.HomeWork ?? "Д/З нет"}",
                                 replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
                         }
                     }
@@ -294,14 +294,14 @@ namespace InfBot
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"Программирование Д/З: {subject.HomeWork}",
+                                $"Программирование Д/З: {subject.HomeWork ?? "Д/З нет"}",
                                 replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
                         }
                         else
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"Программирование Д/З: {subject.HomeWork}",
+                                $"Программирование Д/З: {subject.HomeWork ?? "Д/З нет"}",
                                 replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
                         }
                     }
@@ -322,14 +322,14 @@ namespace InfBot
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"ТВИМС Д/З: {subject.HomeWork}",
+                                $"ТВИМС Д/З: {subject.HomeWork ?? "Д/З нет"}",
                                 replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
                         }
                         else
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"ТВИМС Д/З: {subject.HomeWork}",
+                                $"ТВИМС Д/З: {subject.HomeWork ?? "Д/З нет"}",
                                 replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
                         }
                     }
@@ -350,14 +350,14 @@ namespace InfBot
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"ИнЯз Д/З: {subject.HomeWork}",
+                                $"ИнЯз Д/З: {subject.HomeWork ?? "Д/З нет"}",
                                 replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
                         }
                         else
                         {
                             await client.EditMessageTextAsync(message.Chat.Id,
                                 message.MessageId,
-                                $"ИнЯз Д/З: {subject.HomeWork}",
+                                $"ИнЯз Д/З: {subject.HomeWork ?? "Д/З нет"}",
                                 replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject(subject.Link));
                         }
                     }
@@ -599,7 +599,9 @@ namespace InfBot
                     {
                         foreach (BotUser user in users)
                         {
-                            await client.SendTextMessageAsync(message.Chat.Id, $"{user.Name} -- {user.Id}");
+                            await client.SendTextMessageAsync(message.Chat.Id,
+                                $"{user.Name}:",
+                                replyMarkup: Buttons.UserWithId(user.Id));
                         }
                         await client.SendTextMessageAsync(message.Chat.Id,
                             $"Ваш Id -- {message.Chat.Id}",
@@ -631,6 +633,71 @@ namespace InfBot
                     }
                 }
 
+            }
+            else
+            {
+                try
+                {
+                    if (e.CallbackQuery.Data.Substring(0, 2) == "id")
+                    {
+                        using (ApplicationContext dataBase = new ApplicationContext())
+                        {
+                            var selectedUser = from user in dataBase.BotUsers.ToList()
+                                               where user.Id == e.CallbackQuery.Data.Substring(2)
+                                               select user;
+
+                            foreach (BotUser user in selectedUser)
+                            {
+                                await client.EditMessageTextAsync(message.Chat.Id,
+                                    message.MessageId,
+                                    $"Имя: {user.Name}\n\n" +
+                                    $"Id: {user.Id}",
+                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.UserModification(user.Id));
+                            }
+                        }
+                    }
+                    else if (e.CallbackQuery.Data.Substring(0, 3) == "del")
+                    {
+                        using (ApplicationContext dataBase = new ApplicationContext())
+                        {
+                            var selectedUser = from user in dataBase.BotUsers.ToList()
+                                               where user.Id == e.CallbackQuery.Data.Substring(3)
+                                               select user;
+
+                            foreach (BotUser user in selectedUser)
+                            {
+                                await client.SendTextMessageAsync(user.Id, "Вас удалили из списка зарегистрированных пользователей");
+                                dataBase.Remove(user);
+                                await client.EditMessageTextAsync(message.Chat.Id,
+                                    message.MessageId,
+                                    "Пользователь удален");
+                            }
+                            await dataBase.SaveChangesAsync();
+                        }
+                    }
+                    else if (e.CallbackQuery.Data.Substring(0, 4) == "edit")
+                    {
+                        using (ApplicationContext dataBase = new ApplicationContext())
+                        {
+                            var selectedUser = from user in dataBase.BotUsers.ToList()
+                                               where user.Id == e.CallbackQuery.Data.Substring(4)
+                                               select user;
+
+                            foreach (BotUser user in selectedUser)
+                            {
+                                BotUser.NameChanging = true;
+                                BotUser.IdToChange = e.CallbackQuery.Data.Substring(4);
+                                await client.EditMessageTextAsync(message.Chat.Id,
+                                    message.MessageId,
+                                    "Введите новое имя");
+                            }
+                        }
+                    }
+                }
+                catch
+                {
+
+                }
             }
         }
 
@@ -709,6 +776,25 @@ namespace InfBot
                     }
                     BotUser.Maling = false;
                     await client.SendTextMessageAsync(message.Chat.Id, "Сообщение отправлено", replyMarkup: Buttons.BackToEdit());
+                }
+                else if (BotUser.NameChanging)
+                {
+                    using (ApplicationContext dataBase = new ApplicationContext())
+                    {
+                        var selectedUser = from user in dataBase.BotUsers.ToList()
+                                           where user.Id == BotUser.IdToChange
+                                           select user;
+
+                        foreach (BotUser user in selectedUser)
+                        {
+                            user.Name = message.Text;
+                            await client.SendTextMessageAsync(message.Chat.Id, "Имя заменено", replyMarkup: Buttons.BackToEdit());
+                            await client.SendTextMessageAsync(BotUser.IdToChange, $"Ваше имя изменили на {message.Text}");
+                        }
+                        await dataBase.SaveChangesAsync();
+                    }
+                    BotUser.IdToChange = null;
+                    BotUser.NameChanging = false;
                 }
 
                 else if (message.Text == "Im Matvey")
