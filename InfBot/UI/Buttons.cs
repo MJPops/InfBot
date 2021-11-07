@@ -15,10 +15,6 @@ namespace InfBot.UI
                     },
                     new List<InlineKeyboardButton>
                     {
-                        InlineKeyboardButton.WithCallbackData(text: "Дистанционные занятия", callbackData: "ДистантСсылки")
-                    },
-                    new List<InlineKeyboardButton>
-                    {
                         InlineKeyboardButton.WithCallbackData(text: "Расписание", callbackData: "Расписание")
                     }
             });
