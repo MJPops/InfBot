@@ -40,6 +40,59 @@ namespace InfBot
         {
             var message = e.CallbackQuery.Message;
 
+            static async Task SubjectsWithLinksAsync(Subject subject, Message message)
+            {
+                try
+                {
+                    await client.EditMessageTextAsync(message.Chat.Id,
+                        message.MessageId,
+                        $"{subject.Name} Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                        Buttons.InSubject(subject.Link, subject.LinkToLesson));
+
+                }
+                catch
+                {
+                    try
+                    {
+                        await client.EditMessageTextAsync(message.Chat.Id,
+                            message.MessageId,
+                            $"{subject.Name} Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                            Buttons.InSubject(subject.Link));
+
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                $"{subject.Name} Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                                Buttons.InSubject(subject.LinkToLesson));
+
+                        }
+                        catch
+                        {
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                    message.MessageId,
+                                    $"{subject.Name} Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
+                                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
+                        }
+                    }
+                }
+            }
+            static async Task SubjectEddit(Subject subject, Message message)
+            {
+                await client.EditMessageTextAsync(message.Chat.Id,
+                            message.MessageId,
+                            $"{subject.Name}:\n\n▫ {subject.HomeWork ?? "Д/З нет"}\n\n" +
+                            $"▫ Ссылка: {subject.Link ?? "Ссылки нет"}\n\n" +
+                            $"Что вы хотите изменить?",
+                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
+            }
+
 
             if (e.CallbackQuery.Data != null)
             {
@@ -369,59 +422,6 @@ namespace InfBot
                 }
 
             }
-        }
-
-        private static async Task SubjectsWithLinksAsync(Subject subject, Message message)
-        {
-            try
-            {
-                await client.EditMessageTextAsync(message.Chat.Id,
-                    message.MessageId,
-                    $"{subject.Name} Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
-                    replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
-                    Buttons.InSubject(subject.Link, subject.LinkToLesson));
-
-            }
-            catch
-            {
-                try
-                {
-                    await client.EditMessageTextAsync(message.Chat.Id,
-                        message.MessageId,
-                        $"{subject.Name} Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
-                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
-                        Buttons.InSubject(subject.Link));
-
-                }
-                catch
-                {
-                    try
-                    {
-                        await client.EditMessageTextAsync(message.Chat.Id,
-                            message.MessageId,
-                            $"{subject.Name} Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
-                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
-                            Buttons.InSubject(subject.LinkToLesson));
-
-                    }
-                    catch
-                    {
-                        await client.EditMessageTextAsync(message.Chat.Id,
-                                message.MessageId,
-                                $"{subject.Name} Д/З:\n\n▫ {subject.HomeWork ?? "Д/З нет"}",
-                                replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubject());
-                    }
-                }
-            }
-        }
-        private static async Task SubjectEddit(Subject subject, Message message)
-        {
-            await client.EditMessageTextAsync(message.Chat.Id,
-                        message.MessageId,
-                        $"{subject.Name}:\n\n▫ {subject.HomeWork ?? "Д/З нет"}\n\n" +
-                        $"▫ Ссылка: {subject.Link ?? "Ссылки нет"}\n\n" +
-                        $"Что вы хотите изменить?",
-                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
         }
 
         [Obsolete]
