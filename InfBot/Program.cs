@@ -250,184 +250,127 @@ namespace InfBot
             }
             else
             {
-                try
+                using (ApplicationContext dataBase = new ApplicationContext())
                 {
-                    if (e.CallbackQuery.Data == "Диффуры")
+                    if (dataBase.Subjects.ToList().Any())
                     {
-                        using (ApplicationContext dataBase = new ApplicationContext())
+                        var selectedSubjects = dataBase.Subjects.ToList();
+                        if (e.CallbackQuery.Data == "Диффуры")
                         {
                             var subject = await dataBase.Subjects.FindAsync("1");
-
                             await SubjectsWithLinksAsync(subject, message);
                         }
-                    }
-                    else if (e.CallbackQuery.Data == "Физика")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
+                        else if (e.CallbackQuery.Data == "Физика")
                         {
                             var subject = await dataBase.Subjects.FindAsync("2");
                             await SubjectsWithLinksAsync(subject, message);
                         }
-                    }
-                    else if (e.CallbackQuery.Data == "МСОПР")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
+                        else if (e.CallbackQuery.Data == "МСОПР")
                         {
                             var subject = await dataBase.Subjects.FindAsync("3");
                             await SubjectsWithLinksAsync(subject, message);
                         }
-                    }
-                    else if (e.CallbackQuery.Data == "Физ-ра")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
+                        else if (e.CallbackQuery.Data == "Физ-ра")
                         {
                             var subject = await dataBase.Subjects.FindAsync("4");
                             await SubjectsWithLinksAsync(subject, message);
                         }
-                    }
-                    else if (e.CallbackQuery.Data == "ТОИ")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
+                        else if (e.CallbackQuery.Data == "ТОИ")
                         {
                             var subject = await dataBase.Subjects.FindAsync("5");
                             await SubjectsWithLinksAsync(subject, message);
                         }
-                    }
-                    else if (e.CallbackQuery.Data == "Социология")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
+                        else if (e.CallbackQuery.Data == "Социология")
                         {
                             var subject = await dataBase.Subjects.FindAsync("6");
                             await SubjectsWithLinksAsync(subject, message);
                         }
-                    }
-                    else if (e.CallbackQuery.Data == "Философия")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
+                        else if (e.CallbackQuery.Data == "Философия")
                         {
                             var subject = await dataBase.Subjects.FindAsync("7");
                             await SubjectsWithLinksAsync(subject, message);
                         }
-                    }
-                    else if (e.CallbackQuery.Data == "Программирование")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
+                        else if (e.CallbackQuery.Data == "Программирование")
                         {
                             var subject = await dataBase.Subjects.FindAsync("8");
                             await SubjectsWithLinksAsync(subject, message);
                         }
-                    }
-                    else if (e.CallbackQuery.Data == "ТВИМС")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
+                        else if (e.CallbackQuery.Data == "ТВИМС")
                         {
                             var subject = await dataBase.Subjects.FindAsync("9");
                             await SubjectsWithLinksAsync(subject, message);
                         }
-                    }
-                    else if (e.CallbackQuery.Data == "ИнЯз")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
+                        else if (e.CallbackQuery.Data == "ИнЯз")
                         {
                             var subject = await dataBase.Subjects.FindAsync("10");
                             await SubjectsWithLinksAsync(subject, message);
                         }
-                    }
 
-                    else if (e.CallbackQuery.Data == "ДиффурыEdit")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
+                        else if (e.CallbackQuery.Data == "ДиффурыEdit")
                         {
                             var subject = await dataBase.Subjects.FindAsync("1");
                             await SubjectEddit(subject, message);
                             Subject.subjectToChange = "1";
                         }
-                    }
-                    else if (e.CallbackQuery.Data == "ФизикаEdit")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
+                        else if (e.CallbackQuery.Data == "ФизикаEdit")
                         {
                             var subject = await dataBase.Subjects.FindAsync("2");
                             await SubjectEddit(subject, message);
                             Subject.subjectToChange = "2";
                         }
-                    }
-                    else if (e.CallbackQuery.Data == "Физ-раEdit")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
+                        else if (e.CallbackQuery.Data == "Физ-раEdit")
                         {
                             var subject = await dataBase.Subjects.FindAsync("3");
                             await SubjectEddit(subject, message);
                             Subject.subjectToChange = "3";
                         }
-                    }
-                    else if (e.CallbackQuery.Data == "ТОИEdit")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
+                        else if (e.CallbackQuery.Data == "ТОИEdit")
                         {
                             var subject = await dataBase.Subjects.FindAsync("4");
                             await SubjectEddit(subject, message);
                             Subject.subjectToChange = "4";
                         }
-                    }
-                    else if (e.CallbackQuery.Data == "ФилософияEdit")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
+                        else if (e.CallbackQuery.Data == "ФилософияEdit")
                         {
                             var subject = await dataBase.Subjects.FindAsync("5");
                             await SubjectEddit(subject, message);
                             Subject.subjectToChange = "5";
                         }
-                    }
-                    else if (e.CallbackQuery.Data == "СоциологияEdit")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
+                        else if (e.CallbackQuery.Data == "СоциологияEdit")
                         {
                             var subject = await dataBase.Subjects.FindAsync("6");
                             await SubjectEddit(subject, message);
                             Subject.subjectToChange = "6";
                         }
-                    }
-                    else if (e.CallbackQuery.Data == "ПрограммированиеEdit")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
+                        else if (e.CallbackQuery.Data == "ПрограммированиеEdit")
                         {
                             var subject = await dataBase.Subjects.FindAsync("7");
                             await SubjectEddit(subject, message);
                             Subject.subjectToChange = "7";
                         }
-                    }
-                    else if (e.CallbackQuery.Data == "МСОПРEdit")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
+                        else if (e.CallbackQuery.Data == "МСОПРEdit")
                         {
                             var subject = await dataBase.Subjects.FindAsync("8");
                             await SubjectEddit(subject, message);
                             Subject.subjectToChange = "8";
                         }
-                    }
-                    else if (e.CallbackQuery.Data == "ТВИМСEdit")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
+                        else if (e.CallbackQuery.Data == "ТВИМСEdit")
                         {
                             var subject = await dataBase.Subjects.FindAsync("9");
                             await SubjectEddit(subject, message);
                             Subject.subjectToChange = "9";
                         }
-                    }
-                    else if (e.CallbackQuery.Data == "ИнЯзEdit")
-                    {
-                        using (ApplicationContext dataBase = new ApplicationContext())
+                        else if (e.CallbackQuery.Data == "ИнЯзEdit")
                         {
                             var subject = await dataBase.Subjects.FindAsync("10");
                             await SubjectEddit(subject, message);
                             Subject.subjectToChange = "10";
                         }
                     }
-                }
-                catch
-                {
-                    await client.SendTextMessageAsync(message.Chat.Id, "Поймал маслину, предмет пока не добавили, сорямба");
+                    else
+                    {
+                        await client.SendTextMessageAsync(message.Chat.Id, "Маслину поймал, предмета нету");
+                    }
                 }
             }
         }
