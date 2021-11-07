@@ -134,6 +134,29 @@ namespace InfBot
                 BotUser.Maling = false;
             }
 
+            else if (e.CallbackQuery.Data == "Заполнить предметы")
+            {
+                await client.SendTextMessageAsync(message.Chat.Id, "Данные по предметам заполнены");
+                Subject.parametrSetingStatus = "Заполнить предметы";
+            }
+            else if (e.CallbackQuery.Data == "Новости")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var selectedNews = dataBase.News.ToList();
+                    foreach (News news in selectedNews)
+                    {
+                        
+                        
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                 message.MessageId,
+                            $"{news.Novelty ?? "Новостей нет"}",
+                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                            Buttons.BackToStart());
+                        
+                    }
+                }
+            }
             else if (e.CallbackQuery.Data == "Домашку")
             {
                 await client.SendTextMessageAsync(message.Chat.Id, "Введите Д/З");
@@ -395,7 +418,7 @@ namespace InfBot
                 else if (message.Text == "Заполнить предметы")
                 {
                     await Subject.AddStandartSubjectsAsync();
-                    await client.SendTextMessageAsync(message.Chat.Id, "Данные по предметам заполнены");
+                    await client.SendTextMessageAsync(message.Chat.Id, "Данные по предметам заполнены", replyMarkup: Buttons.SubjectsEdit());
                 }
 
                 else if (Subject.parametrSetingStatus != null)
@@ -452,6 +475,12 @@ namespace InfBot
                         {
                             await client.SendTextMessageAsync(message.Chat.Id, "Нет зарегистрированных пользователей");
                         }
+
+                        News news = new News(message.Text);
+                        dataBase.Add(news);
+                            await client.SendTextMessageAsync(message.Chat.Id, "Новость добавлена");
+                        
+                        await dataBase.SaveChangesAsync();
                     }
                     BotUser.Maling = false;
                     await client.SendTextMessageAsync(message.Chat.Id, "Сообщение отправлено", replyMarkup: Buttons.BackToEdit());
