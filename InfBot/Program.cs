@@ -123,6 +123,37 @@ namespace InfBot
             {
                 await client.SendPhotoAsync(message.Chat.Id, Links.Timetable, replyMarkup: Buttons.BackToStart());
             }
+            else if (e.CallbackQuery.Data == "Новости")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var allNews = from news in dataBase.News.ToList()
+                                  orderby news.DateAndTime
+                                  select news;
+
+                    if (allNews.Any())
+                    {
+                        foreach (News news in allNews)
+                        {
+                            await client.SendTextMessageAsync(message.Chat.Id,
+                                $"{news.DateAndTime}\n\n" +
+                                $"{news.Novelty}");
+
+                        }
+                        await client.SendTextMessageAsync(message.Chat.Id,
+                            "На данный момент это все новости",
+                            replyMarkup: Buttons.BackToStart());
+                    }
+                    else
+                    {
+                        await client.EditMessageTextAsync(message.Chat.Id,
+                            message.MessageId,
+                            "Новостей нет",
+                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                            Buttons.BackToStart());
+                    }
+                }
+            }
 
             else if (e.CallbackQuery.Data == "Im Matvey")
             {
@@ -134,29 +165,6 @@ namespace InfBot
                 BotUser.Maling = false;
             }
 
-            else if (e.CallbackQuery.Data == "Заполнить предметы")
-            {
-                await client.SendTextMessageAsync(message.Chat.Id, "Данные по предметам заполнены");
-                Subject.parametrSetingStatus = "Заполнить предметы";
-            }
-            else if (e.CallbackQuery.Data == "Новости")
-            {
-                using (ApplicationContext dataBase = new ApplicationContext())
-                {
-                    var selectedNews = dataBase.News.ToList();
-                    foreach (News news in selectedNews)
-                    {
-                        
-                        
-                            await client.EditMessageTextAsync(message.Chat.Id,
-                                 message.MessageId,
-                            $"{news.Novelty ?? "Новостей нет"}",
-                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
-                            Buttons.BackToStart());
-                        
-                    }
-                }
-            }
             else if (e.CallbackQuery.Data == "Домашку")
             {
                 await client.SendTextMessageAsync(message.Chat.Id, "Введите Д/З");
@@ -470,17 +478,14 @@ namespace InfBot
                             {
                                 await client.SendTextMessageAsync(user.Id, message.Text);
                             }
+                            News news = new News { Novelty = message.Text, DateAndTime = DateTime.Now.ToString("MM.dd.yyyy  HH:mm:ss") };
+                            dataBase.Add(news);
+                            await dataBase.SaveChangesAsync();
                         }
                         else
                         {
                             await client.SendTextMessageAsync(message.Chat.Id, "Нет зарегистрированных пользователей");
                         }
-
-                        News news = new News(message.Text);
-                        dataBase.Add(news);
-                            await client.SendTextMessageAsync(message.Chat.Id, "Новость добавлена");
-                        
-                        await dataBase.SaveChangesAsync();
                     }
                     BotUser.Maling = false;
                     await client.SendTextMessageAsync(message.Chat.Id, "Сообщение отправлено", replyMarkup: Buttons.BackToEdit());
