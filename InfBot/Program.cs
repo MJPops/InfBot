@@ -169,13 +169,7 @@ namespace InfBot
                 using (ApplicationContext dataBase = new ApplicationContext())
                 {
                     var subject = await dataBase.Subjects.FindAsync("1");
-
-                    await client.EditMessageTextAsync(message.Chat.Id,
-                        message.MessageId,
-                        $"Диффуры:\n\n▫ {subject.HomeWork ?? "Д/З нет"}\n\n" +
-                        $"▫ Ссылка: {subject.Link ?? "Ссылки нет"}\n\n" +
-                        $"Что вы хотите изменить?",
-                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
+                    await SubjectEddit(subject, message);
                     Subject.subjectToChange = "1";
                 }
             }
@@ -184,13 +178,7 @@ namespace InfBot
                 using (ApplicationContext dataBase = new ApplicationContext())
                 {
                     var subject = await dataBase.Subjects.FindAsync("2");
-
-                    await client.EditMessageTextAsync(message.Chat.Id,
-                        message.MessageId,
-                        $"Физика:\n\n▫ {subject.HomeWork ?? "Д/З нет"}\n\n" +
-                        $"▫ Ссылка: {subject.Link ?? "Ссылки нет"}\n\n" +
-                        $"Что вы хотите изменить?",
-                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
+                    await SubjectEddit(subject, message);
                     Subject.subjectToChange = "2";
                 }
             }
@@ -199,13 +187,7 @@ namespace InfBot
                 using (ApplicationContext dataBase = new ApplicationContext())
                 {
                     var subject = await dataBase.Subjects.FindAsync("3");
-
-                    await client.EditMessageTextAsync(message.Chat.Id,
-                        message.MessageId,
-                        $"Физ-ра:\n\n▫ {subject.HomeWork ?? "Д/З нет"}\n\n" +
-                        $"▫ Ссылка: {subject.Link ?? "Ссылки нет"}\n\n" +
-                        $"Что вы хотите изменить?",
-                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
+                    await SubjectEddit(subject, message);
                     Subject.subjectToChange = "3";
                 }
             }
@@ -214,13 +196,7 @@ namespace InfBot
                 using (ApplicationContext dataBase = new ApplicationContext())
                 {
                     var subject = await dataBase.Subjects.FindAsync("4");
-
-                    await client.EditMessageTextAsync(message.Chat.Id,
-                        message.MessageId,
-                        $"ТОИ:\n\n▫ {subject.HomeWork ?? "Д/З нет"}\n\n" +
-                        $"▫ Ссылка: {subject.Link ?? "Ссылки нет"}\n\n" +
-                        $"Что вы хотите изменить?",
-                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
+                    await SubjectEddit(subject, message);
                     Subject.subjectToChange = "4";
                 }
             }
@@ -229,13 +205,7 @@ namespace InfBot
                 using (ApplicationContext dataBase = new ApplicationContext())
                 {
                     var subject = await dataBase.Subjects.FindAsync("5");
-
-                    await client.EditMessageTextAsync(message.Chat.Id,
-                        message.MessageId,
-                        $"Философия:\n\n▫ {subject.HomeWork ?? "Д/З нет"}\n\n" +
-                        $"▫ Ссылка: {subject.Link ?? "Ссылки нет"}\n\n" +
-                        $"Что вы хотите изменить?",
-                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
+                    await SubjectEddit(subject, message);
                     Subject.subjectToChange = "5";
                 }
             }
@@ -244,13 +214,7 @@ namespace InfBot
                 using (ApplicationContext dataBase = new ApplicationContext())
                 {
                     var subject = await dataBase.Subjects.FindAsync("6");
-
-                    await client.EditMessageTextAsync(message.Chat.Id,
-                        message.MessageId,
-                        $"Социология:\n\n▫ {subject.HomeWork ?? "Д/З нет"}\n\n" +
-                        $"▫ Ссылка: {subject.Link ?? "Ссылки нет"}\n\n" +
-                        $"Что вы хотите изменить?",
-                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
+                    await SubjectEddit(subject, message);
                     Subject.subjectToChange = "6";
                 }
             }
@@ -259,13 +223,7 @@ namespace InfBot
                 using (ApplicationContext dataBase = new ApplicationContext())
                 {
                     var subject = await dataBase.Subjects.FindAsync("7");
-
-                    await client.EditMessageTextAsync(message.Chat.Id,
-                        message.MessageId,
-                        $"Программирование:\n\n▫ {subject.HomeWork ?? "Д/З нет"}\n\n" +
-                        $"▫ Ссылка: {subject.Link ?? "Ссылки нет"}\n\n" +
-                        $"Что вы хотите изменить?",
-                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
+                    await SubjectEddit(subject, message);
                     Subject.subjectToChange = "7";
                 }
             }
@@ -274,13 +232,7 @@ namespace InfBot
                 using (ApplicationContext dataBase = new ApplicationContext())
                 {
                     var subject = await dataBase.Subjects.FindAsync("8");
-
-                    await client.EditMessageTextAsync(message.Chat.Id,
-                        message.MessageId,
-                        $"МСОПР:\n\n▫ {subject.HomeWork ?? "Д/З нет"}\n\n" +
-                        $"▫ Ссылка: {subject.Link ?? "Ссылки нет"}\n\n" +
-                        $"Что вы хотите изменить?",
-                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
+                    await SubjectEddit(subject, message);
                     Subject.subjectToChange = "8";
                 }
             }
@@ -289,29 +241,16 @@ namespace InfBot
                 using (ApplicationContext dataBase = new ApplicationContext())
                 {
                     var subject = await dataBase.Subjects.FindAsync("9");
-
-                    await client.EditMessageTextAsync(message.Chat.Id,
-                        message.MessageId,
-                        $"ТВИМС:\n\n▫ {subject.HomeWork ?? "Д/З нет"}\n\n" +
-                        $"▫ Ссылка: {subject.Link ?? "Ссылки нет"}\n\n" +
-                        $"Что вы хотите изменить?",
-                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
-
+                    await SubjectEddit(subject, message);
+                    Subject.subjectToChange = "9";
                 }
-                Subject.subjectToChange = "9";
             }
             else if (e.CallbackQuery.Data == "ИнЯзEdit")
             {
                 using (ApplicationContext dataBase = new ApplicationContext())
                 {
                     var subject = await dataBase.Subjects.FindAsync("10");
-
-                    await client.EditMessageTextAsync(message.Chat.Id,
-                        message.MessageId,
-                        $"ИнЯз:\n\n▫ {subject.HomeWork ?? "Д/З нет"}\n\n" +
-                        $"▫ Ссылка: {subject.Link ?? "Ссылки нет"}\n\n" +
-                        $"Что вы хотите изменить?",
-                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
+                    await SubjectEddit(subject, message);
                     Subject.subjectToChange = "10";
                 }
             }
@@ -474,6 +413,15 @@ namespace InfBot
                     }
                 }
             }
+        }
+        private static async Task SubjectEddit(Subject subject, Message message)
+        {
+            await client.EditMessageTextAsync(message.Chat.Id,
+                        message.MessageId,
+                        $"{subject.Name}:\n\n▫ {subject.HomeWork ?? "Д/З нет"}\n\n" +
+                        $"▫ Ссылка: {subject.Link ?? "Ссылки нет"}\n\n" +
+                        $"Что вы хотите изменить?",
+                        replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)Buttons.InSubjectEdit());
         }
 
         [Obsolete]
