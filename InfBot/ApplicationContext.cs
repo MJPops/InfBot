@@ -7,6 +7,7 @@ namespace HelloApp
     {
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<BotUser> BotUsers { get; set; }
+        public DbSet<News> News { get; set; }
 
         public ApplicationContext()
         {
