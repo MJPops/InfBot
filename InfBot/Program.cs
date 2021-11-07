@@ -136,7 +136,7 @@ namespace InfBot
                         foreach (News news in allNews)
                         {
                             await client.SendTextMessageAsync(message.Chat.Id,
-                                $"🕒{news.DateAndTime}🕘\n" +
+                                $"🕒{news.DateAndTime}🕘\n\n" +
                                 $"▫ {news.Novelty}");
 
                         }
