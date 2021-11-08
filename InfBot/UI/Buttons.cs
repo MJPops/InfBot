@@ -20,6 +20,10 @@ namespace InfBot.UI
                     new List<InlineKeyboardButton>
                     {
                         InlineKeyboardButton.WithCallbackData(text: "Расписание", callbackData: "Расписание")
+                    },
+                    new List<InlineKeyboardButton>
+                    {
+                        InlineKeyboardButton.WithUrl(text: "Личный кабинет", url: Links.PersonalAcc)
                     }
             });
             ;
