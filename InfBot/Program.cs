@@ -562,11 +562,18 @@ namespace InfBot
                     using (ApplicationContext dataBase = new ApplicationContext())
                     {
                         var news = dataBase.News.Find(News.IdToChange);
-                        Console.WriteLine(News.IdToChange);
-
+                        
                         news.Novelty = message.Text;
                         await client.SendTextMessageAsync(message.Chat.Id, "Новость изменена", replyMarkup: Buttons.BackToEdit());
                         await dataBase.SaveChangesAsync();
+
+                        var users = dataBase.BotUsers.ToList();
+                        foreach (var user in users)
+                        {
+                            await client.SendTextMessageAsync(user.Id,
+                                $"Изменено сообщение от {news.DateAndTime}\n\n" +
+                                $"▫ {news.Novelty}");
+                        }
                     }
                     News.IdToChange = null;
                     News.ToChange = false;
