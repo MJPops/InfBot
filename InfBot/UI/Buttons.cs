@@ -161,6 +161,10 @@ namespace InfBot.UI
                     },
                     new List<InlineKeyboardButton>
                     {
+                        InlineKeyboardButton.WithCallbackData(text: "Редактировать новости", callbackData: "Редактировать новости")
+                    },
+                    new List<InlineKeyboardButton>
+                    {
                         InlineKeyboardButton.WithCallbackData(text: "Разослать сообщение", callbackData: "Рассылка")
                     }
             });
@@ -212,6 +216,18 @@ namespace InfBot.UI
                     {
                         InlineKeyboardButton.WithCallbackData(text: $"Удалить", callbackData: $"del{id}"),
                         InlineKeyboardButton.WithCallbackData(text: $"Переименовать", callbackData: $"edit{id}")
+                    }
+            });
+            ;
+        }
+        public static IReplyMarkup NewsModification(string id)
+        {
+            return new InlineKeyboardMarkup(new List<List<InlineKeyboardButton>>
+            {
+                    new List<InlineKeyboardButton>
+                    {
+                        InlineKeyboardButton.WithCallbackData(text: $"Удалить", callbackData: $"Newsdel{id}"),
+                        InlineKeyboardButton.WithCallbackData(text: $"Изменить", callbackData: $"Newsedit{id}")
                     }
             });
             ;

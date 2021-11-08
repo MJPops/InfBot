@@ -225,6 +225,38 @@ namespace InfBot
                 }
 
             }
+            else if (e.CallbackQuery.Data == "Редактировать новости")
+            {
+                using (ApplicationContext dataBase = new ApplicationContext())
+                {
+                    var allNews = from news in dataBase.News.ToList()
+                                  orderby news.DateAndTime
+                                  select news;
+
+                    if (allNews.Any())
+                    {
+                        foreach (News news in allNews)
+                        {
+                            await client.SendTextMessageAsync(message.Chat.Id,
+                                $"🕒{news.DateAndTime}🕘\n\n" +
+                                $"▫ {news.Novelty}",
+                                replyMarkup: Buttons.NewsModification(news.DateAndTime));
+
+                        }
+                        await client.SendTextMessageAsync(message.Chat.Id,
+                            "На данный момент это все новости",
+                            replyMarkup: Buttons.BackToEdit());
+                    }
+                    else
+                    {
+                        await client.EditMessageTextAsync(message.Chat.Id,
+                            message.MessageId,
+                            "Новостей нет",
+                            replyMarkup: (Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)
+                            Buttons.BackToEdit());
+                    }
+                }
+            }
 
 
             else
@@ -390,10 +422,35 @@ namespace InfBot
                         BotUser.NameChanging = true;
                         BotUser.IdToChange = e.CallbackQuery.Data.Substring(4);
                         BotUser.AdminId = message.Chat.Id.ToString();
+                        await client.SendTextMessageAsync(message.Chat.Id, "Введите новое имя");
                         await client.EditMessageTextAsync(message.Chat.Id,
                             message.MessageId,
-                            "Введите новое имя");
+                            "Изменяется");
                     }
+                    else if (e.CallbackQuery.Data.Substring(0, 7) == "Newsdel")
+                    {
+                        using (ApplicationContext dataBase = new ApplicationContext())
+                        {
+                            var selectedNews = await dataBase.News.FindAsync(e.CallbackQuery.Data.Substring(7));
+
+                            dataBase.Remove(selectedNews);
+                            await client.EditMessageTextAsync(message.Chat.Id,
+                                message.MessageId,
+                                "Новость удалена");
+                            await dataBase.SaveChangesAsync();
+                        }
+                    }
+                    else if (e.CallbackQuery.Data.Substring(0, 8) == "Newsedit")
+                    {
+                        News.ToChange = true;
+                        News.IdToChange = e.CallbackQuery.Data.Substring(8);
+                        BotUser.AdminId = message.Chat.Id.ToString();
+                        await client.SendTextMessageAsync(message.Chat.Id, "Введите новую новость");
+                        await client.EditMessageTextAsync(message.Chat.Id,
+                            message.MessageId,
+                            "Изменяется");
+                    }
+
                 }
                 catch { }
             }
@@ -489,20 +546,30 @@ namespace InfBot
                 {
                     using (ApplicationContext dataBase = new ApplicationContext())
                     {
-                        var selectedUser = from user in dataBase.BotUsers.ToList()
-                                           where user.Id == BotUser.IdToChange
-                                           select user;
+                        var user = dataBase.BotUsers.Find(BotUser.IdToChange);
 
-                        foreach (BotUser user in selectedUser)
-                        {
-                            user.Name = message.Text;
-                            await client.SendTextMessageAsync(message.Chat.Id, "Имя заменено", replyMarkup: Buttons.BackToEdit());
-                            await client.SendTextMessageAsync(BotUser.IdToChange, $"Ваше имя изменили на {message.Text}");
-                        }
+                        user.Name = message.Text;
+                        await client.SendTextMessageAsync(message.Chat.Id, "Имя заменено", replyMarkup: Buttons.BackToEdit());
+                        await client.SendTextMessageAsync(BotUser.IdToChange, $"Ваше имя изменили на {message.Text}");
                         await dataBase.SaveChangesAsync();
                     }
                     BotUser.IdToChange = null;
                     BotUser.NameChanging = false;
+                    BotUser.AdminId = null;
+                }
+                else if (News.ToChange && BotUser.AdminId == message.Chat.Id.ToString())
+                {
+                    using (ApplicationContext dataBase = new ApplicationContext())
+                    {
+                        var news = dataBase.News.Find(News.IdToChange);
+                        Console.WriteLine(News.IdToChange);
+
+                        news.Novelty = message.Text;
+                        await client.SendTextMessageAsync(message.Chat.Id, "Новость изменена", replyMarkup: Buttons.BackToEdit());
+                        await dataBase.SaveChangesAsync();
+                    }
+                    News.IdToChange = null;
+                    News.ToChange = false;
                     BotUser.AdminId = null;
                 }
 
