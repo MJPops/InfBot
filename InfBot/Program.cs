@@ -460,7 +460,7 @@ namespace InfBot
                     Subject.subjectToChange = null;
                     BotUser.AdminId = null;
                 }
-                else if (BotUser.Maling && BotUser.AdminId==message.Chat.Id.ToString())
+                else if (BotUser.Maling && BotUser.AdminId == message.Chat.Id.ToString())
                 {
                     using (ApplicationContext dataBase = new ApplicationContext())
                     {

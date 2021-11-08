@@ -11,18 +11,12 @@ namespace InfBot.UI
             {
                     new List<InlineKeyboardButton>
                     {
-                        InlineKeyboardButton.WithCallbackData(text: "Предметы", callbackData: "Предметы")
-                    },
-                    new List<InlineKeyboardButton>
-                    {
-                        InlineKeyboardButton.WithCallbackData(text: "Новости", callbackData: "Новости"),
-                    },
-                    new List<InlineKeyboardButton>
-                    {
+                        InlineKeyboardButton.WithCallbackData(text: "Предметы", callbackData: "Предметы"),
                         InlineKeyboardButton.WithCallbackData(text: "Расписание", callbackData: "Расписание")
                     },
                     new List<InlineKeyboardButton>
                     {
+                        InlineKeyboardButton.WithCallbackData(text: "Новости", callbackData: "Новости"),
                         InlineKeyboardButton.WithUrl(text: "Личный кабинет", url: Links.PersonalAcc)
                     }
             });
