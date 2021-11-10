@@ -12,7 +12,7 @@ namespace InfBot
 {
     class Program
     {
-        private static string token { get; set; } = "2141405883:AAEKP5nIZlzPPLLcwQlHoN3fz3E9AklScAE";
+        private static string token { get; set; } = "2141405883:AAFl5GDs4N_5803RGX1EFry_oPMRsmGqMEc";
         private static TelegramBotClient client;
 
 
@@ -599,10 +599,11 @@ namespace InfBot
 
                         if (!selectedBotUser.Any())
                         {
-                            BotUser newUser = new BotUser { Id = Convert.ToString(message.Chat.Id), Name = message.Text.Substring(12) };
-                            await client.SendTextMessageAsync(message.Chat.Id, "Вы зарегистрированы");
+                            BotUser newUser = new BotUser { Id = Convert.ToString(message.Chat.Id), 
+                                Name = message.Text.Substring(12) };
                             dataBase.Add(newUser);
                             await dataBase.SaveChangesAsync();
+                            await client.SendTextMessageAsync(message.Chat.Id, "Вы зарегистрированы");
                         }
                         else
                         {
